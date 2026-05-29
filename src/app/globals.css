@@ -1,0 +1,24 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Animação para o plano de fundo em movimento panorâmico */
+@keyframes movimentoSuave {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 450px 450px;
+  }
+}
+
+.bg-movimento-suave {
+  background-image: url("/FUNDO.png");
+  background-repeat: repeat;
+  animation: movimentoSuave 25s linear infinite;
+}
