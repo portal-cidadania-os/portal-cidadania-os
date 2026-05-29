@@ -1,8 +1,46 @@
 ﻿"use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { supabase } from "@/lib/supabase";
 
 export default function HomePage() {
+  // Estados para controle do formulário de acesso
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  // Manipulador do envio de login
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage(null);
+
+    if (!email || !password) {
+      setMessage({ type: "error", text: "Por favor, preencha todos os campos." });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setMessage({ type: "error", text: error.message });
+      } else {
+        setMessage({ type: "success", text: "Autenticação bem-sucedida! Redirecionando..." });
+        // Espaço preparado para redirecionamento futuro: window.location.href = "/portal";
+      }
+    } catch (err) {
+      setMessage({ type: "error", text: "Erro inesperado ao conectar com o servidor." });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="w-full min-h-[calc(100vh-73px)] relative overflow-hidden bg-white text-black font-sans">
       
@@ -83,18 +121,50 @@ export default function HomePage() {
           {/* Lado Direito: Área de Acesso (5 Colunas) */}
           <div className="lg:col-span-5 bg-white border border-neutral-100 rounded-xl p-6 shadow-sm flex flex-col gap-6">
             <h2 className="text-xl font-bold text-black border-b border-neutral-100 pb-3">Área de Acesso</h2>
-            <form className="flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
+            
+            <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+              
+              {/* Alerta de Feedback Dinâmico */}
+              {message && (
+                <div className={`p-3.5 rounded-lg text-sm font-medium ${
+                  message.type === "error" ? "bg-red-50 text-red-600 border border-red-100" : "bg-emerald-50 text-emerald-600 border border-emerald-100"
+                }`}>
+                  {message.text}
+                </div>
+              )}
+
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-black uppercase tracking-wider">Usuário</label>
-                <input type="text" className="w-full bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:border-brand-ciano" placeholder="Digite seu usuário" />
+                <label className="text-xs font-bold text-black uppercase tracking-wider">E-mail</label>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:border-brand-ciano" 
+                  placeholder="Digite seu e-mail institucional" 
+                  disabled={loading}
+                />
               </div>
+
               <div className="flex flex-col gap-1.5">
                 <label className="text-xs font-bold text-black uppercase tracking-wider">Senha</label>
-                <input type="password" className="w-full bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:border-brand-ciano" placeholder="••••••••" />
+                <input 
+                  type="password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full bg-white border border-neutral-200 rounded-lg px-3 py-2.5 text-sm text-black focus:outline-none focus:border-brand-ciano" 
+                  placeholder="••••••••" 
+                  disabled={loading}
+                />
               </div>
-              <button type="submit" className="w-full bg-brand-ciano text-white font-bold py-3 rounded-lg mt-2 hover:opacity-90 transition-opacity">
-                Entrar
+
+              <button 
+                type="submit" 
+                disabled={loading}
+                className="w-full bg-brand-ciano text-white font-bold py-3 rounded-lg mt-2 hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {loading ? "Verificando credenciais..." : "Entrar"}
               </button>
+
             </form>
           </div>
 
