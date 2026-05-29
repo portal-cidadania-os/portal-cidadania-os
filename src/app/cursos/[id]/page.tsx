@@ -4,6 +4,9 @@ import React from "react";
 import { useParams } from "next/navigation";
 import DetalhesCurso from "@/components/cursos/DetalhesCurso";
 
+// Forçar o Next.js a tratar esta rota dinamicamente em ambiente de produção (Vercel Build Fix)
+export const dynamic = "force-dynamic";
+
 export default function CursoDetalhePage() {
   const params = useParams();
   const id = params?.id as string;
