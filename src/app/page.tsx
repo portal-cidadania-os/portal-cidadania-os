@@ -101,41 +101,35 @@ export default function LandingPage() {
     <main className="w-full bg-white text-black">
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-[#0a0a1a] text-white">
-        {/* Fundo FUNDO.png animado */}
-        <div className="absolute inset-0 pointer-events-none bg-movimento-suave opacity-[0.07]" />
-
-        {/* Blobs decorativos */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-brand-ciano/5 rounded-full blur-3xl -translate-x-1/4 -translate-y-1/4" />
-          <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-brand-magenta/5 rounded-full blur-3xl translate-y-1/4" />
-        </div>
+      <section className="relative overflow-hidden bg-white">
+        {/* Fundo FUNDO.png animado — mais visível */}
+        <div className="absolute inset-0 pointer-events-none bg-movimento-suave opacity-[0.3]" />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
 
           {/* ── Coluna esquerda: texto ── */}
-          <div className="flex flex-col gap-6 justify-center px-6 md:px-10 lg:px-12 xl:px-20 py-16 md:py-24">
+          <div className="flex flex-col gap-6 justify-center px-6 md:px-10 lg:px-12 xl:px-20 py-16 md:py-24 text-black">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-brand-ciano/10 border border-brand-ciano/20 text-brand-ciano text-xs font-bold px-4 py-1.5 rounded-full self-start">
-              <span className="w-1.5 h-1.5 bg-brand-ciano rounded-full animate-pulse" />
+            <div className="inline-flex items-center gap-2 bg-black/5 border border-black/20 text-black text-sm font-bold px-4 py-1.5 rounded-full self-start">
+              <span className="w-1.5 h-1.5 bg-black rounded-full animate-pulse" />
               Centro Restaurando Cidadania · Piracicaba
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black">
               Conectando pessoas a{" "}
-              <span className="text-brand-ciano">oportunidades</span>{" "}
+              <span className="text-amber-600">oportunidades</span>{" "}
               que transformam vidas
             </h1>
 
-            <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-lg">
+            <p className="text-black text-base md:text-lg leading-relaxed max-w-lg">
               Cursos gratuitos, vagas de emprego, saúde, odontologia e farmácia solidária — tudo em um único portal, acessível para toda a comunidade de Piracicaba.
             </p>
 
             {/* Hashtag */}
             <div className="flex items-center gap-2">
-              <span className="text-brand-amarelo font-extrabold text-lg tracking-tight">#MadureiraTem</span>
-              <span className="text-white/20 text-sm">·</span>
-              <span className="text-white/40 text-sm">Desenvolvimento de Pessoas</span>
+              <span className="text-amber-600 font-extrabold text-lg tracking-tight">#MadureiraTem</span>
+              <span className="text-black/20 text-sm">·</span>
+              <span className="text-black text-sm font-semibold">Desenvolvimento de Pessoas</span>
             </div>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -147,23 +141,25 @@ export default function LandingPage() {
               </Link>
               <Link
                 href="/cursos"
-                className="border border-white/20 hover:border-white/40 text-white font-semibold px-7 py-3.5 rounded-xl text-sm transition-colors"
+                className="border border-black/20 hover:border-black/40 text-black font-semibold px-7 py-3.5 rounded-xl text-sm transition-colors"
               >
                 Ver cursos →
               </Link>
             </div>
           </div>
 
-          {/* ── Coluna direita: carousel full-bleed ── */}
-          <div className="relative min-h-[340px] lg:min-h-0">
-            <BannerCarousel />
+          {/* ── Coluna direita: carousel com fundo visível ao redor ── */}
+          <div className="relative min-h-[340px] lg:min-h-0 p-4 md:p-6 lg:p-8 flex items-stretch">
+            <div className="relative flex-1 min-h-[290px] rounded-2xl overflow-hidden shadow-xl">
+              <BannerCarousel />
+            </div>
           </div>
 
         </div>
       </section>
 
       {/* ── NÚMEROS DE IMPACTO ── */}
-      <section className="bg-brand-ciano">
+      <section className="bg-brand-ciano border-t-2 border-b-2 border-brand-amarelo">
         <div className="max-w-7xl mx-auto px-6 py-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-black">
             {NUMEROS_IMPACTO.map((item) => (
@@ -191,7 +187,7 @@ export default function LandingPage() {
           {SERVICOS.map((servico) => (
             <div
               key={servico.titulo}
-              className="bg-white border border-neutral-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col gap-4"
+              className="bg-white border border-black/20 rounded-2xl p-6 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col gap-4"
             >
               <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${servico.cor}`}>
                 {servico.icone}
@@ -230,7 +226,7 @@ export default function LandingPage() {
                   <Link
                     key={noticia.id}
                     href={noticia.href}
-                    className="bg-white border border-neutral-100 rounded-xl p-5 hover:border-brand-ciano/30 hover:shadow-sm transition-all group"
+                    className="bg-white border border-black/20 rounded-xl p-5 hover:border-black/40 hover:shadow-sm transition-all group"
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-1">

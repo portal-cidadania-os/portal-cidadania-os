@@ -101,7 +101,7 @@ export default function Header() {
               <span className="text-[10px] text-neutral-400 font-semibold uppercase tracking-widest hidden sm:block">
                 Associação [Nome Oficial]
               </span>
-              <span className="text-black font-extrabold text-lg tracking-tight group-hover:text-brand-ciano transition-colors">
+              <span className="text-black font-extrabold text-xl tracking-tight group-hover:text-brand-ciano transition-colors">
                 Portal Cidadania
               </span>
             </div>
@@ -195,7 +195,7 @@ export default function Header() {
       </div>
 
       {/* ── CAMADA 4: Navegação de Conteúdo (brand-ciano) ── */}
-      <div className="bg-brand-ciano hidden md:block">
+      <div className="bg-brand-ciano hidden md:block border-t-2 border-b-2 border-brand-amarelo">
         <div className="max-w-7xl mx-auto px-6 py-2 flex items-center gap-6">
           <Link
             href="/cursos"
