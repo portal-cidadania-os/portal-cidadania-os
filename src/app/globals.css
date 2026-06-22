@@ -17,8 +17,29 @@ body {
   }
 }
 
+/* Fundo 1 — padrão (Hero e outros) */
 .bg-movimento-suave {
   background-image: url("/FUNDO.png");
   background-repeat: repeat;
   animation: movimentoSuave 25s linear infinite;
+}
+
+/* Slideshow de imagens — fade entre múltiplas fotos
+   Ciclo total: IMAGES.length × 6s (configurado no BgSlideshow.tsx)
+   Cada imagem: fade-in 0.5s → visível 5s → fade-out 0.5s */
+@keyframes bgSlideshow {
+  /* 1/7 do ciclo = 14.3% → cada imagem ocupa essa janela */
+  0%    { opacity: 0; }
+  1.2%  { opacity: 1; } /* fade in em 0.5s */
+  13.1% { opacity: 1; } /* permanece até 5.5s */
+  14.3% { opacity: 0; } /* fade out em 0.5s */
+  100%  { opacity: 0; } /* espera o restante do ciclo */
+}
+
+/* Fundo 2 — alternativo (Footer)
+   Para usar: coloque FUNDO2.png em /public/ e troque a classe no componente */
+.bg-movimento-suave-2 {
+  background-image: url("/FUNDO2.png");
+  background-repeat: repeat;
+  animation: movimentoSuave 30s linear infinite;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import BannerCarousel from "@/components/BannerCarousel";
+import BgSlideshow from "@/components/BgSlideshow";
 
 // ============================================================
 // Portal Cidadania OS — Landing Page (/)
@@ -102,8 +103,8 @@ export default function LandingPage() {
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-white">
-        {/* Fundo FUNDO.png animado — mais visível */}
-        <div className="absolute inset-0 pointer-events-none bg-movimento-suave opacity-[0.3]" />
+        {/* Slideshow de fotos dos núcleos como fundo */}
+        <BgSlideshow opacity={0.12} />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
 

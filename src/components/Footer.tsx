@@ -13,8 +13,8 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-white text-black">
-      {/* Fundo FUNDO.png animado — mais visível */}
-      <div className="absolute inset-0 pointer-events-none bg-movimento-suave opacity-[0.3]" />
+      {/* Fundo FUNDO2.png animado — usa bg-movimento-suave-2 (troque por bg-movimento-suave para usar FUNDO.png) */}
+      <div className="absolute inset-0 pointer-events-none bg-movimento-suave-2 opacity-[0.15]" />
 
       {/* ── CTA Section ── */}
       <div className="relative z-10 border-b border-black/5">
@@ -52,9 +52,9 @@ export default function Footer() {
                   className="h-6 w-auto object-contain"
                 />
               </div>
-              <span className="font-extrabold text-base text-black">Portal Cidadania</span>
+              <span className="font-extrabold text-2xl text-black">Portal Cidadania</span>
             </div>
-            <p className="text-black/70 text-sm leading-relaxed">
+            <p className="text-black/70 text-base font-bold leading-snug">
               {/* PLACEHOLDER: Substitua pelo texto oficial da missão da associação */}
               Associação sem fins lucrativos dedicada ao desenvolvimento humano e social, conectando cidadãos a oportunidades reais de capacitação, trabalho e cidadania ativa.
             </p>
@@ -119,8 +119,8 @@ export default function Footer() {
           </div>
 
           {/* Coluna 2 — Plataforma */}
-          <div className="flex flex-col gap-3">
-            <h4 className="text-black text-[11px] font-bold uppercase tracking-widest mb-1">
+          <div className="flex flex-col gap-1.5">
+            <h4 className="text-black text-sm font-black uppercase tracking-widest mb-1">
               Plataforma
             </h4>
             {[
@@ -135,7 +135,7 @@ export default function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-black hover:text-black/70 text-sm transition-colors"
+                className="text-black hover:text-black/70 text-base font-semibold transition-colors"
               >
                 {item.label}
               </Link>
@@ -143,8 +143,8 @@ export default function Footer() {
           </div>
 
           {/* Coluna 3 — Institucional */}
-          <div className="flex flex-col gap-3">
-            <h4 className="text-black text-[11px] font-bold uppercase tracking-widest mb-1">
+          <div className="flex flex-col gap-1.5">
+            <h4 className="text-black text-sm font-black uppercase tracking-widest mb-1">
               Institucional
             </h4>
             {[
@@ -159,7 +159,7 @@ export default function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-black hover:text-black/70 text-sm transition-colors"
+                className="text-black hover:text-black/70 text-base font-semibold transition-colors"
               >
                 {item.label}
               </Link>
@@ -167,8 +167,8 @@ export default function Footer() {
           </div>
 
           {/* Coluna 4 — Cidadania & Contato */}
-          <div className="flex flex-col gap-3">
-            <h4 className="text-black text-[11px] font-bold uppercase tracking-widest mb-1">
+          <div className="flex flex-col gap-1.5">
+            <h4 className="text-black text-sm font-black uppercase tracking-widest mb-1">
               Cidadania
             </h4>
             {[
@@ -182,7 +182,7 @@ export default function Footer() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-black hover:text-black/70 text-sm transition-colors"
+                className="text-black hover:text-black/70 text-base font-semibold transition-colors"
               >
                 {item.label}
               </Link>
@@ -190,11 +190,11 @@ export default function Footer() {
 
             {/* PLACEHOLDER: Substitua pelo endereço e e-mail reais */}
             <div className="mt-3 pt-3 border-t border-black/5 flex flex-col gap-1">
-              <span className="text-black/70 text-xs">[Endereço da associação]</span>
-              <span className="text-black/70 text-xs">[Cidade - UF, CEP XX.XXX-XXX]</span>
+              <span className="text-black/70 text-sm font-semibold">[Endereço da associação]</span>
+              <span className="text-black/70 text-sm font-semibold">[Cidade - UF, CEP XX.XXX-XXX]</span>
               <a
                 href="mailto:contato@[dominio].org.br"
-                className="text-black hover:text-black/70 text-xs transition-colors mt-1"
+                className="text-black hover:text-black/70 text-sm font-semibold transition-colors mt-1"
               >
                 contato@[dominio].org.br
               </a>
