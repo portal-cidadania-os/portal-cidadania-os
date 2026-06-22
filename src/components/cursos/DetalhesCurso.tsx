@@ -3,16 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import BotaoInscricao from "./BotaoInscricao";
-
-interface Curso {
-  id: string;
-  titulo: string;
-  descricao: string;
-  carga_horaria: number;
-  modalidade: string;
-  localizacao: string;
-  status: string;
-}
+import type { Curso } from "@/types";
 
 interface DetalhesCursoProps {
   id: string;

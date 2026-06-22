@@ -9,15 +9,13 @@ export default function PortalPage() {
 
   useEffect(() => {
     const checarSessao = async () => {
-      // Verifica o estado da sessão do usuário em tempo real
       const { data: { session } } = await supabase.auth.getSession();
-
+      // Middleware já protege esta rota server-side.
+      // Este check é apenas fallback client-side.
       if (!session) {
-        // Se não houver sessão ativa, ejeta o usuário imediatamente para a Home
-        window.location.href = "/";
+        window.location.href = "/entrar";
       } else {
-        // Se estiver autenticado, extrai os dados do usuário e desliga o esqueleto de carregamento
-        setUserEmail(session.user.email ?? "Usuário Cidadão");
+        setUserEmail(session.user.email ?? "Usuário");
         setLoading(false);
       }
     };
@@ -28,7 +26,7 @@ export default function PortalPage() {
   // Manipulador de Desconexão Segura (Logout)
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    window.location.href = "/";
+    window.location.href = "/entrar";
   };
 
   if (loading) {

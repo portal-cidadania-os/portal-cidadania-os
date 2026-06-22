@@ -1,10 +1,11 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import DetalhesCurso from "@/components/cursos/DetalhesCurso";
 
-// Forçar o Next.js a tratar esta rota dinamicamente em ambiente de produção (Vercel Build Fix)
+// ForÃ§a o Next.js a tratar esta rota dinamicamente (fix para build de produÃ§Ã£o)
 export const dynamic = "force-dynamic";
 
 export default function CursoDetalhePage() {
@@ -14,26 +15,29 @@ export default function CursoDetalhePage() {
   return (
     <main className="min-h-screen bg-neutral-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex flex-col gap-6">
-        
-        {/* Link de Retorno Rápido */}
-        <div className="w-full">
-          <a 
-            href="/cursos" 
-            className="text-xs font-bold text-neutral-500 hover:text-brand-ciano transition-colors uppercase tracking-wider"
-          >
-            ? Voltar para o Catálogo Geral
-          </a>
+
+        {/* Breadcrumb de retorno */}
+        <div className="flex items-center gap-2 text-xs text-neutral-500">
+          <Link href="/" className="hover:text-brand-ciano transition-colors">
+            InÃ­cio
+          </Link>
+          <span>/</span>
+          <Link href="/cursos" className="hover:text-brand-ciano transition-colors">
+            Cursos
+          </Link>
+          <span>/</span>
+          <span className="text-neutral-400">Detalhes</span>
         </div>
 
-        {/* Renderização Condicional baseada na existência do ID em rota */}
+        {/* Componente de detalhes â€” renderizaÃ§Ã£o condicional por ID */}
         {id ? (
           <DetalhesCurso id={id} />
         ) : (
           <div className="w-full text-center py-6 text-xs text-neutral-400">
-            Carregando parâmetros de rota...
+            Carregando parÃ¢metros de rota...
           </div>
         )}
-        
+
       </div>
     </main>
   );

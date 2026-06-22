@@ -1,17 +1,10 @@
 ﻿"use client";
 
 import React from "react";
+import type { Curso } from "@/types";
 
 interface CursoProps {
-  curso: {
-    id: string;
-    titulo: string;
-    descricao: string;
-    carga_horaria: number;
-    modalidade: string;
-    localizacao: string;
-    status: string;
-  };
+  curso: Curso;
 }
 
 export default function CardCurso({ curso }: CursoProps) {
