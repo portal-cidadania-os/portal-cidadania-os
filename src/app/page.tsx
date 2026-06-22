@@ -108,14 +108,14 @@ export default function LandingPage() {
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
 
           {/* ── Coluna esquerda: carousel com fundo visível ao redor ── */}
-          <div className="relative min-h-[340px] lg:min-h-0 p-4 md:p-6 lg:p-8 flex items-stretch order-2 lg:order-1">
+          <div className="relative min-h-[340px] lg:min-h-0 p-4 md:p-6 lg:p-8 flex items-stretch order-1">
             <div className="relative flex-1 min-h-[290px] rounded-2xl overflow-hidden shadow-xl">
               <BannerCarousel />
             </div>
           </div>
 
           {/* ── Coluna direita: texto ── */}
-          <div className="flex flex-col gap-6 justify-center px-6 md:px-10 lg:px-12 xl:px-20 py-16 md:py-24 text-black order-1 lg:order-2">
+          <div className="flex flex-col gap-6 justify-center px-6 md:px-10 lg:px-12 xl:px-20 py-16 md:py-24 text-black order-2">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-black/5 border border-black/20 text-black text-sm font-bold px-4 py-1.5 rounded-full self-start">
               <span className="w-1.5 h-1.5 bg-black rounded-full animate-pulse" />
