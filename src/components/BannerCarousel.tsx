@@ -138,8 +138,8 @@ export default function BannerCarousel() {
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Gradiente lateral — funde com o fundo claro do Hero pela esquerda */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent" />
+          {/* Gradiente lateral — funde com o fundo claro do Hero pela direita */}
+          <div className="absolute inset-0 bg-gradient-to-l from-white via-white/50 to-transparent" />
 
           {/* Gradiente vertical — escurece a base para legibilidade do texto */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

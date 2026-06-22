@@ -196,57 +196,57 @@ export default function Header() {
 
       {/* ── CAMADA 4: Navegação de Conteúdo (brand-ciano) ── */}
       <div className="bg-brand-ciano hidden md:block border-t-2 border-b-2 border-brand-amarelo">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center gap-6">
+        <div className="max-w-7xl mx-auto px-6 py-3.5 flex items-center gap-8">
           <Link
             href="/cursos"
-            className="text-black/80 hover:text-black font-semibold text-xs transition-colors py-1 flex items-center gap-1.5"
+            className="text-black/80 hover:text-black font-semibold text-sm transition-colors py-1 flex items-center gap-1.5"
           >
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
             Cursos &amp; Capacitação
           </Link>
           <Link
             href="/vagas"
-            className="text-black/80 hover:text-black font-semibold text-xs transition-colors py-1 flex items-center gap-1.5"
+            className="text-black/80 hover:text-black font-semibold text-sm transition-colors py-1 flex items-center gap-1.5"
           >
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
             Vagas &amp; Emprego
           </Link>
           <Link
             href="/voluntariado"
-            className="text-black/80 hover:text-black font-semibold text-xs transition-colors py-1 flex items-center gap-1.5"
+            className="text-black/80 hover:text-black font-semibold text-sm transition-colors py-1 flex items-center gap-1.5"
           >
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
             Voluntariado
           </Link>
           <Link
             href="/eventos"
-            className="text-black/80 hover:text-black font-semibold text-xs transition-colors py-1 flex items-center gap-1.5"
+            className="text-black/80 hover:text-black font-semibold text-sm transition-colors py-1 flex items-center gap-1.5"
           >
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             Eventos
           </Link>
           <Link
             href="/publicacoes"
-            className="text-black/80 hover:text-black font-semibold text-xs transition-colors py-1 flex items-center gap-1.5"
+            className="text-black/80 hover:text-black font-semibold text-sm transition-colors py-1 flex items-center gap-1.5"
           >
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
             </svg>
             Publicações
           </Link>
           <Link
             href="/campanhas"
-            className="text-black/80 hover:text-black font-semibold text-xs transition-colors py-1 flex items-center gap-1.5"
+            className="text-black/80 hover:text-black font-semibold text-sm transition-colors py-1 flex items-center gap-1.5"
           >
-            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
             </svg>
             Campanhas

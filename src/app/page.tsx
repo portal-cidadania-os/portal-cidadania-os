@@ -107,8 +107,15 @@ export default function LandingPage() {
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
 
-          {/* ── Coluna esquerda: texto ── */}
-          <div className="flex flex-col gap-6 justify-center px-6 md:px-10 lg:px-12 xl:px-20 py-16 md:py-24 text-black">
+          {/* ── Coluna esquerda: carousel com fundo visível ao redor ── */}
+          <div className="relative min-h-[340px] lg:min-h-0 p-4 md:p-6 lg:p-8 flex items-stretch order-2 lg:order-1">
+            <div className="relative flex-1 min-h-[290px] rounded-2xl overflow-hidden shadow-xl">
+              <BannerCarousel />
+            </div>
+          </div>
+
+          {/* ── Coluna direita: texto ── */}
+          <div className="flex flex-col gap-6 justify-center px-6 md:px-10 lg:px-12 xl:px-20 py-16 md:py-24 text-black order-1 lg:order-2">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-black/5 border border-black/20 text-black text-sm font-bold px-4 py-1.5 rounded-full self-start">
               <span className="w-1.5 h-1.5 bg-black rounded-full animate-pulse" />
@@ -117,7 +124,7 @@ export default function LandingPage() {
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black">
               Conectando pessoas a{" "}
-              <span className="text-amber-600">oportunidades</span>{" "}
+              <span className="text-brand-amarelo">oportunidades</span>{" "}
               que transformam vidas
             </h1>
 
@@ -127,7 +134,7 @@ export default function LandingPage() {
 
             {/* Hashtag */}
             <div className="flex items-center gap-2">
-              <span className="text-amber-600 font-extrabold text-lg tracking-tight">#MadureiraTem</span>
+              <span className="text-brand-amarelo font-extrabold text-lg tracking-tight">#MadureiraTem</span>
               <span className="text-black/20 text-sm">·</span>
               <span className="text-black text-sm font-semibold">Desenvolvimento de Pessoas</span>
             </div>
@@ -137,7 +144,7 @@ export default function LandingPage() {
                 href="/entrar?tab=cadastro"
                 className="bg-brand-ciano hover:opacity-90 text-white font-bold px-7 py-3.5 rounded-xl text-sm transition-opacity"
               >
-                Cadastre-se gratuitamente
+                Cadastre-se
               </Link>
               <Link
                 href="/cursos"
@@ -145,13 +152,6 @@ export default function LandingPage() {
               >
                 Ver cursos →
               </Link>
-            </div>
-          </div>
-
-          {/* ── Coluna direita: carousel com fundo visível ao redor ── */}
-          <div className="relative min-h-[340px] lg:min-h-0 p-4 md:p-6 lg:p-8 flex items-stretch">
-            <div className="relative flex-1 min-h-[290px] rounded-2xl overflow-hidden shadow-xl">
-              <BannerCarousel />
             </div>
           </div>
 
