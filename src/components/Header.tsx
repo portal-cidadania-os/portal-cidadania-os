@@ -38,47 +38,6 @@ export default function Header() {
   return (
     <header className="sticky top-0 w-full z-50 shadow-sm">
 
-      {/* ── CAMADA 1: Barra de Utilidade ── */}
-      <div className="bg-[#0f0f1a] border-b border-white/5 hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 py-1.5 flex items-center justify-between">
-          <div className="flex items-center gap-5">
-            {/* PLACEHOLDER: Substitua pelo nome oficial da associação */}
-            <span className="text-brand-amarelo/60 text-[11px] font-medium">
-              Associação [Nome Oficial] — CNPJ XX.XXX.XXX/0001-XX
-            </span>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/transparencia"
-              className="text-brand-amarelo/70 hover:text-brand-amarelo text-[11px] transition-colors"
-            >
-              Transparência
-            </Link>
-            <span className="text-brand-amarelo/20">|</span>
-            <Link
-              href="/ouvidoria"
-              className="text-brand-amarelo/70 hover:text-brand-amarelo text-[11px] transition-colors"
-            >
-              Ouvidoria
-            </Link>
-            <span className="text-brand-amarelo/20">|</span>
-            <Link
-              href="/lgpd"
-              className="text-brand-amarelo/70 hover:text-brand-amarelo text-[11px] transition-colors"
-            >
-              LGPD &amp; Privacidade
-            </Link>
-            <span className="text-brand-amarelo/20">|</span>
-            <Link
-              href="/fale-conosco"
-              className="text-brand-amarelo/70 hover:text-brand-amarelo text-[11px] transition-colors"
-            >
-              Fale Conosco
-            </Link>
-          </div>
-        </div>
-      </div>
-
       {/* ── CAMADA 2: Identidade + CTAs ── */}
       <div className="bg-white border-b border-neutral-100">
         <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
@@ -102,7 +61,7 @@ export default function Header() {
                 Associação [Nome Oficial]
               </span>
               <span className="text-black font-extrabold text-xl tracking-tight group-hover:text-brand-ciano transition-colors">
-                Portal Cidadania
+                CERPI
               </span>
             </div>
           </Link>

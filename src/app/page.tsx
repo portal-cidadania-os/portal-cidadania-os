@@ -3,6 +3,7 @@ import Link from "next/link";
 import BannerCarousel from "@/components/BannerCarousel";
 import BgSlideshow from "@/components/BgSlideshow";
 import NucleoCard from "@/components/NucleoCard";
+import { NUCLEOS } from "@/lib/nucleos";
 
 // ============================================================
 // Portal Cidadania OS — Landing Page (/)
@@ -12,21 +13,9 @@ import NucleoCard from "@/components/NucleoCard";
 // Dados placeholder — substitua por dados reais ou busca do Supabase
 const NUMEROS_IMPACTO = [
   { valor: "1.000+", label: "Vagas por Mês" },
-  { valor: "7", label: "Núcleos Ativos" },
+  { valor: "10", label: "Núcleos Ativos" },
   { valor: "4+", label: "Cursos Profissionalizantes" },
   { valor: "Piracicaba", label: "Com amor à cidade" },
-];
-
-// DEPARTAMENTOS — salve as fotos em: C:\Projetos\portal-cidadania-os\public\
-// imagem = foto nova | fallback = foto de reserva se a nova não existir
-const NUCLEOS = [
-  { titulo: "Portal Cidadania",     subtitulo: "Desenvolvimento de Pessoas",         href: "/cadastro?nucleo=portal",          imagem: "/dept-portal.jpg",          fallback: "/portal.png",          acento: "#0099ff" },
-  { titulo: "Cursos Gratuitos",     subtitulo: "Auto Maquiagem · LIBRAS · Manicure", href: "/cadastro?nucleo=cursos",          imagem: "/dept-cursos.jpg",          fallback: "/cursos.png",          acento: "#cc44ff" },
-  { titulo: "Núcleo CRESCER",       subtitulo: "Empresários e Empreendedoras",       href: "/cadastro?nucleo=crescer",         imagem: "/dept-crescer.jpg",         fallback: "/crescer.png",         acento: "#ffcc00" },
-  { titulo: "Empregabilidade",      subtitulo: "+1.000 vagas por mês",               href: "/cadastro?nucleo=empregabilidade", imagem: "/dept-empregabilidade.jpg", fallback: "/empregabilidade.png", acento: "#33cc66" },
-  { titulo: "Madureira Saúde",      subtitulo: "Medicina · Nutrição · Psicologia",   href: "/cadastro?nucleo=saude",           imagem: "/dept-saude.jpg",           fallback: "/saude.png",           acento: "#ff4444" },
-  { titulo: "Sorria com Cristo",    subtitulo: "Odontologia solidária gratuita",      href: "/cadastro?nucleo=odontologia",     imagem: "/dept-dentista.jpg",        fallback: "/dentista.png",        acento: "#ff66cc" },
-  { titulo: "Farmácia Solidária",   subtitulo: "Medicamentos para a comunidade",     href: "/cadastro?nucleo=farmacia",        imagem: "/dept-farmacia.jpg",        fallback: "/Farmacia.png",        acento: "#ff9944" },
 ];
 
 const NOTICIAS = [
@@ -149,12 +138,12 @@ export default function LandingPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {NUCLEOS.map((nucleo) => (
             <NucleoCard
-              key={nucleo.titulo}
+              key={nucleo.slug}
               titulo={nucleo.titulo}
               subtitulo={nucleo.subtitulo}
-              href={nucleo.href}
+              href={`/nucleos/${nucleo.slug}`}
               imagem={nucleo.imagem}
-              fallback={nucleo.fallback}
+              fallback={nucleo.imagem}
               acento={nucleo.acento}
             />
           ))}
