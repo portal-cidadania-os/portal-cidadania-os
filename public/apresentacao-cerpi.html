@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal Cidadania OS — Apresentação CERPI · Connection Cyber Assessoria e Treinamento Tecnológico</title>
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ciano:   #0099ff;
+      --amarelo: #ffcc00;
+      --magenta: #ff0066;
+      --verde:   #33cc66;
+      --dark:    #0a0a1a;
+      --dark2:   #0f0f24;
+      --dark3:   #16162a;
+      --text:    #e8e8f0;
+      --muted:   rgba(232,232,240,0.55);
+      --border:  rgba(0,153,255,0.18);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── NAVEGAÇÃO FIXA ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,26,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-brand { font-size: 1rem; font-weight: 800; color: var(--ciano); letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 1.6rem; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.78rem;
+      font-weight: 600; transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ciano); }
+    .nav-badge {
+      font-size: 0.7rem; font-weight: 700; color: var(--dark);
+      background: var(--amarelo); padding: 3px 10px; border-radius: 20px;
+    }
+
+    /* ── SEÇÕES ── */
+    section { padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
+    section.full { max-width: 100%; padding: 0; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--ciano); margin-bottom: 0.75rem;
+    }
+    h2.section-title {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+      line-height: 1.15; letter-spacing: -1px; margin-bottom: 1.25rem;
+    }
+    .section-desc { color: var(--muted); font-size: 1.1rem; max-width: 680px; margin-bottom: 3rem; }
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0;
+    }
+
+    /* ── CAPA ── */
+    #capa {
+      min-height: 100vh; max-width: 100%;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,153,255,0.13) 0%, transparent 70%);
+      position: relative; overflow: hidden;
+    }
+    .capa-grid {
+      position: absolute; inset: 0; opacity: 0.04;
+      background-image:
+        linear-gradient(rgba(0,153,255,.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,153,255,.5) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .capa-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,153,255,0.1); border: 1px solid rgba(0,153,255,0.3);
+      color: var(--ciano); font-size: 0.75rem; font-weight: 700;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 2.5rem;
+    }
+    .dot-pulse {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--ciano);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+    .capa h1 {
+      font-size: clamp(2.6rem, 6vw, 5.5rem); font-weight: 900;
+      letter-spacing: -2px; line-height: 1.05;
+      background: linear-gradient(135deg, #fff 30%, var(--ciano) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 1rem;
+    }
+    .capa-sub {
+      font-size: clamp(1rem, 2vw, 1.35rem); color: var(--muted);
+      max-width: 640px; margin: 0 auto 2.5rem;
+    }
+    .capa-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 3.5rem; }
+    .tag {
+      font-size: 0.75rem; font-weight: 700; padding: 5px 14px; border-radius: 20px;
+      border: 1px solid; letter-spacing: .5px;
+    }
+    .tag-ciano  { color: var(--ciano);   border-color: rgba(0,153,255,.35);   background: rgba(0,153,255,.07); }
+    .tag-amarelo{ color: var(--amarelo); border-color: rgba(255,204,0,.35);   background: rgba(255,204,0,.07); }
+    .tag-verde  { color: var(--verde);   border-color: rgba(51,204,102,.35);  background: rgba(51,204,102,.07); }
+    .tag-magenta{ color: var(--magenta); border-color: rgba(255,0,102,.35);   background: rgba(255,0,102,.07); }
+    .capa-footer {
+      border-top: 1px solid var(--border); padding-top: 2rem; margin-top: 1rem;
+      display: flex; align-items: center; justify-content: center; gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .capa-footer-item { text-align: center; }
+    .capa-footer-value { font-size: 2rem; font-weight: 900; color: var(--amarelo); }
+    .capa-footer-label { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── SOBRE O CERPI ── */
+    .mvv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .mvv-card {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+    }
+    .mvv-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1.25rem;
+    }
+    .mvv-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .75rem; }
+    .mvv-card p  { color: var(--muted); font-size: .92rem; line-height: 1.65; }
+    .valores-list { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+    .valores-list li {
+      background: rgba(0,153,255,.08); border: 1px solid rgba(0,153,255,.2);
+      color: var(--ciano); font-size: .78rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* ── IMPACTO ── */
+    #impacto.full {
+      background: linear-gradient(135deg, var(--ciano) 0%, #0055cc 100%);
+      padding: 5rem 2rem;
+    }
+    .impacto-inner { max-width: 1100px; margin: 0 auto; }
+    .impacto-grid  { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; }
+    .impacto-item  { text-align: center; }
+    .impacto-num   { font-size: 3rem; font-weight: 900; color: #fff; line-height: 1; }
+    .impacto-label { font-size: .85rem; color: rgba(255,255,255,.7); margin-top: .4rem; }
+
+    /* ── NÚCLEOS ── */
+    .nucleos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+    .nucleo-card {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem 1.75rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: border-color .2s, transform .2s;
+    }
+    .nucleo-card:hover { border-color: var(--ciano); transform: translateY(-2px); }
+    .nucleo-num {
+      width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 900;
+    }
+    .nucleo-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: .35rem; }
+    .nucleo-card p  { color: var(--muted); font-size: .83rem; line-height: 1.55; }
+
+    /* ── BANCO DE DADOS ── */
+    .db-central {
+      background: rgba(0,153,255,0.08); border: 2px solid var(--ciano);
+      border-radius: 16px; padding: 2rem; text-align: center; margin-bottom: 2.5rem;
+    }
+    .db-central h3 { color: var(--ciano); font-size: 1.3rem; font-weight: 900; margin-bottom: .5rem; }
+    .db-central p  { color: var(--muted); font-size: .9rem; }
+    .db-fields {
+      display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: 1rem;
+    }
+    .db-field {
+      font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 8px;
+      background: rgba(0,153,255,.12); color: var(--ciano); border: 1px solid rgba(0,153,255,.25);
+    }
+    .db-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+    .db-dept {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem;
+    }
+    .db-dept-title { font-size: .85rem; font-weight: 800; margin-bottom: .75rem; }
+    .db-table {
+      font-size: .73rem; color: var(--muted); padding: 3px 0;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .db-table:last-child { border-bottom: none; }
+    .db-table::before { content: '→'; color: var(--ciano); font-weight: 700; flex-shrink: 0; }
+
+    /* ── TECNOLOGIAS ── */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.25rem; }
+    .tech-card {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+    }
+    .tech-logo { font-size: 2rem; margin-bottom: .75rem; }
+    .tech-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: .4rem; }
+    .tech-card p  { color: var(--muted); font-size: .84rem; }
+
+    /* ── FUNCIONALIDADES ── */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .feature-card {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+    }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: rgba(0,153,255,.1); border: 1px solid rgba(0,153,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1rem;
+    }
+    .feature-card h4 { font-size: 1rem; font-weight: 800; margin-bottom: .5rem; }
+    .feature-card p  { color: var(--muted); font-size: .85rem; }
+    .feature-badge {
+      display: inline-block; font-size: .68rem; font-weight: 800;
+      padding: 2px 8px; border-radius: 6px; margin-top: .75rem;
+    }
+    .badge-done    { background: rgba(51,204,102,.15); color: var(--verde);  border: 1px solid rgba(51,204,102,.3); }
+    .badge-soon    { background: rgba(255,204,0,.12);  color: var(--amarelo);border: 1px solid rgba(255,204,0,.3); }
+    .badge-future  { background: rgba(255,0,102,.1);   color: var(--magenta);border: 1px solid rgba(255,0,102,.3); }
+
+    /* ── ROADMAP ── */
+    .roadmap { display: flex; flex-direction: column; gap: 1.5rem; }
+    .fase {
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .fase-num {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; font-weight: 900; border: 2px solid;
+    }
+    .fase-num.done     { background: rgba(51,204,102,.15); border-color: var(--verde);   color: var(--verde); }
+    .fase-num.current  { background: rgba(0,153,255,.15);  border-color: var(--ciano);   color: var(--ciano); }
+    .fase-num.next     { background: rgba(255,204,0,.1);   border-color: var(--amarelo); color: var(--amarelo); }
+    .fase-num.future   { background: rgba(255,0,102,.08);  border-color: var(--magenta); color: var(--magenta); }
+    .fase-content { flex: 1; }
+    .fase-content h4 { font-size: 1rem; font-weight: 800; margin-bottom: .4rem; }
+    .fase-content p  { color: var(--muted); font-size: .88rem; }
+    .fase-status {
+      font-size: .7rem; font-weight: 800; letter-spacing: .5px;
+      text-transform: uppercase; margin-bottom: .3rem;
+    }
+    .fase-status.done    { color: var(--verde); }
+    .fase-status.current { color: var(--ciano); }
+    .fase-status.next    { color: var(--amarelo); }
+    .fase-status.future  { color: var(--magenta); }
+
+    /* ── POR QUE CONNECTIONCYBEROS ── */
+    .diferencial-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem; }
+    .diferencial {
+      background: var(--dark2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+    }
+    .diferencial-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .diferencial h4 { font-size: 1rem; font-weight: 800; margin-bottom: .4rem; }
+    .diferencial p  { color: var(--muted); font-size: .84rem; }
+
+    /* ── RODAPÉ / CTA ── */
+    #contato.full {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+    #contato .inner { max-width: 700px; margin: 0 auto; }
+    #contato h2 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+      letter-spacing: -1px; margin-bottom: 1rem;
+    }
+    #contato p { color: var(--muted); font-size: 1.05rem; margin-bottom: 2.5rem; }
+    .cta-btn {
+      display: inline-block; background: var(--ciano); color: #fff;
+      font-size: .9rem; font-weight: 800; padding: 14px 36px;
+      border-radius: 14px; text-decoration: none;
+      transition: opacity .2s; margin: .4rem;
+    }
+    .cta-btn:hover { opacity: .85; }
+    .cta-btn.outline {
+      background: transparent; color: var(--ciano);
+      border: 2px solid var(--ciano);
+    }
+    .footer-credits {
+      margin-top: 4rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: .8rem;
+    }
+    .footer-credits strong { color: var(--amarelo); }
+
+    /* ── PRINT ── */
+    @media print {
+      nav { display: none; }
+      section { padding: 3rem 1.5rem; }
+      .capa-grid { display: none; }
+      body { background: #fff; color: #111; }
+      .mvv-card, .nucleo-card, .tech-card, .feature-card, .diferencial, .db-dept {
+        background: #f9f9f9; border-color: #ddd;
+      }
+      :root {
+        --dark: #ffffff; --dark2: #f5f5f5; --dark3: #eeeeee;
+        --text: #111111; --muted: #555555; --border: #cccccc;
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .capa-footer { gap: 1.5rem; }
+      .fase { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVEGAÇÃO ── -->
+<nav>
+  <span class="nav-brand">CERPI · Portal Cidadania OS</span>
+  <div class="nav-links">
+    <a href="#sobre">Sobre</a>
+    <a href="#nucleos">Núcleos</a>
+    <a href="#banco">Banco de Dados</a>
+    <a href="#tecnologias">Tecnologias</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#contato">Contato</a>
+  </div>
+  <span class="nav-badge">Connection Cyber Assessoria e Treinamento Tecnológico</span>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════
+     1. CAPA
+══════════════════════════════════════════════ -->
+<section id="capa" class="full">
+  <div class="capa-grid"></div>
+
+  <div class="capa-badge">
+    <span class="dot-pulse"></span>
+    Documento Confidencial · Proposta Comercial + Documentação Técnica
+  </div>
+
+  <h1>Portal Cidadania OS</h1>
+
+  <p class="capa-sub">
+    Uma plataforma digital integrada para unificar todos os serviços sociais, educacionais
+    e comunitários do <strong>Centro Restaurando Cidadania — CERPI</strong> em Piracicaba, SP.
+  </p>
+
+  <div class="capa-tags">
+    <span class="tag tag-ciano">Next.js 14</span>
+    <span class="tag tag-ciano">TypeScript</span>
+    <span class="tag tag-amarelo">Supabase</span>
+    <span class="tag tag-amarelo">PostgreSQL</span>
+    <span class="tag tag-verde">Vercel</span>
+    <span class="tag tag-verde">Tailwind CSS</span>
+    <span class="tag tag-magenta">LGPD Compliant</span>
+  </div>
+
+  <div class="capa-footer">
+    <div class="capa-footer-item">
+      <div class="capa-footer-value">10</div>
+      <div class="capa-footer-label">Núcleos Integrados</div>
+    </div>
+    <div class="capa-footer-item">
+      <div class="capa-footer-value">1.000+</div>
+      <div class="capa-footer-label">Vagas por Mês</div>
+    </div>
+    <div class="capa-footer-item">
+      <div class="capa-footer-value">32</div>
+      <div class="capa-footer-label">Tabelas no Banco</div>
+    </div>
+    <div class="capa-footer-item">
+      <div class="capa-footer-value">100%</div>
+      <div class="capa-footer-label">Gratuito para a Comunidade</div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     2. SOBRE O CERPI
+══════════════════════════════════════════════ -->
+<section id="sobre">
+  <p class="section-label">Quem Somos</p>
+  <h2 class="section-title">Centro Restaurando Cidadania</h2>
+  <p class="section-desc">
+    Organização social de Piracicaba, SP, voltada ao desenvolvimento humano, inclusão social
+    e fortalecimento comunitário. O CERPI atua em saúde, educação, emprego, cultura e esporte —
+    de forma totalmente gratuita para a comunidade.
+  </p>
+
+  <div class="mvv-grid">
+    <div class="mvv-card">
+      <div class="mvv-icon" style="background:rgba(0,153,255,.12)">⚡</div>
+      <h3 style="color:var(--ciano)">Nossa Missão</h3>
+      <p>Promover transformação social por meio de ações concretas que gerem oportunidades,
+      dignidade e desenvolvimento para crianças, jovens, adultos e idosos.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-icon" style="background:rgba(255,204,0,.1)">👁️</div>
+      <h3 style="color:var(--amarelo)">Nossa Visão</h3>
+      <p>Ser referência em inclusão social e desenvolvimento comunitário na região de Piracicaba,
+      impactando positivamente a vida de milhares de famílias.</p>
+    </div>
+    <div class="mvv-card">
+      <div class="mvv-icon" style="background:rgba(51,204,102,.1)">❤️</div>
+      <h3 style="color:var(--verde)">Nossos Valores</h3>
+      <p>Ética e transparência em tudo que fazemos.</p>
+      <ul class="valores-list">
+        <li>Ética</li><li>Transparência</li><li>Solidariedade</li>
+        <li>Respeito</li><li>Inclusão</li><li>Responsabilidade Social</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     3. IMPACTO
+══════════════════════════════════════════════ -->
+<section id="impacto" class="full">
+  <div class="impacto-inner">
+    <div class="impacto-grid">
+      <div class="impacto-item">
+        <div class="impacto-num">1.000+</div>
+        <div class="impacto-label">Vagas de emprego por mês</div>
+      </div>
+      <div class="impacto-item">
+        <div class="impacto-num">10</div>
+        <div class="impacto-label">Núcleos de atendimento</div>
+      </div>
+      <div class="impacto-item">
+        <div class="impacto-num">4+</div>
+        <div class="impacto-label">Cursos gratuitos ativos</div>
+      </div>
+      <div class="impacto-item">
+        <div class="impacto-num">Piracicaba</div>
+        <div class="impacto-label">Cidade atendida</div>
+      </div>
+      <div class="impacto-item">
+        <div class="impacto-num">100%</div>
+        <div class="impacto-label">Serviços gratuitos</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     4. OS 10 NÚCLEOS
+══════════════════════════════════════════════ -->
+<section id="nucleos">
+  <p class="section-label">Departamentos</p>
+  <h2 class="section-title">Os 10 Núcleos do CERPI</h2>
+  <p class="section-desc">
+    Cada núcleo possui sua própria estrutura de dados, fluxos de atendimento e interface —
+    tudo integrado ao portal único com um cadastro centralizado por CPF.
+  </p>
+
+  <div class="nucleos-grid">
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(255,102,204,.12);color:#ff66cc">01</div>
+      <div>
+        <h4>Sorria com Cristo</h4>
+        <p>Odontologia solidária gratuita. Prontuários, planos de tratamento e controle de sessões.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(204,68,255,.12);color:#cc44ff">02</div>
+      <div>
+        <h4>Núcleo de Apoio</h4>
+        <p>Assistência social, acolhimento e encaminhamentos para famílias em vulnerabilidade.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(255,204,0,.12);color:#ffcc00">03</div>
+      <div>
+        <h4>Núcleo CRESCER</h4>
+        <p>Capacitação para empresários e empreendedoras. Mentorias, networking e eventos.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(51,204,102,.12);color:#33cc66">04</div>
+      <div>
+        <h4>Empregabilidade</h4>
+        <p>+1.000 vagas por mês. Candidaturas, empresas parceiras e acompanhamento de colocação.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(255,68,68,.12);color:#ff4444">05</div>
+      <div>
+        <h4>Núcleo Esporte</h4>
+        <p>Futebol, futsal e vôlei. Controle de atletas, treinos e presenças por modalidade.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(0,153,255,.12);color:#0099ff">06</div>
+      <div>
+        <h4>Promoção Social</h4>
+        <p>Ações sociais, cestas básicas e campanhas de distribuição para a comunidade.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(204,68,255,.12);color:#cc44ff">07</div>
+      <div>
+        <h4>Páscoa Solidária</h4>
+        <p>Campanha anual com controle de participantes, itens distribuídos e beneficiários.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(255,68,68,.12);color:#ff4444">08</div>
+      <div>
+        <h4>Natal Cidadania</h4>
+        <p>Campanha de Natal solidário. Gestão de presentes, alcance e cobertura da ação.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(255,102,204,.12);color:#ff66cc">09</div>
+      <div>
+        <h4>Empreendedoras</h4>
+        <p>Programa exclusivo para mulheres empreendedoras. Capacitação, mentoria e rede de apoio.</p>
+      </div>
+    </div>
+    <div class="nucleo-card">
+      <div class="nucleo-num" style="background:rgba(51,204,102,.12);color:#33cc66">10</div>
+      <div>
+        <h4>Ação Social Kids</h4>
+        <p>Ações voltadas a crianças e adolescentes — educação, cultura, esporte e lazer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     5. BANCO DE DADOS
+══════════════════════════════════════════════ -->
+<section id="banco">
+  <p class="section-label">Arquitetura de Dados</p>
+  <h2 class="section-title">Banco de Dados Centralizado</h2>
+  <p class="section-desc">
+    Um único registro por CPF na tabela central <code style="color:var(--ciano)">pessoas</code>.
+    Cada departamento possui suas próprias tabelas, sempre referenciando este registro.
+    Dados sensíveis protegidos por RLS (Row Level Security) no Supabase.
+  </p>
+
+  <div class="db-central">
+    <h3>pessoas — Tabela Central</h3>
+    <p>1 registro por CPF · Compartilhada por todos os núcleos · Atualização reflete em tempo real</p>
+    <div class="db-fields">
+      <span class="db-field">id (PK)</span>
+      <span class="db-field">cpf (único)</span>
+      <span class="db-field">nome</span>
+      <span class="db-field">whatsapp</span>
+      <span class="db-field">email</span>
+      <span class="db-field">data_nascimento</span>
+      <span class="db-field">genero</span>
+      <span class="db-field">bairro</span>
+      <span class="db-field">cidade</span>
+      <span class="db-field">renda</span>
+      <span class="db-field">escolaridade</span>
+      <span class="db-field">situacao_emprego</span>
+    </div>
+  </div>
+
+  <div class="db-grid">
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#ff9944">💊 Farmácia Solidária</div>
+      <div class="db-table">farmacia_remedios</div>
+      <div class="db-table">farmacia_estoque</div>
+      <div class="db-table">farmacia_atendimentos</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#ff66cc">🦷 Odontologia</div>
+      <div class="db-table">odonto_prontuarios</div>
+      <div class="db-table">odonto_tratamentos</div>
+      <div class="db-table">odonto_consultas</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#ff4444">🏥 Madureira Saúde</div>
+      <div class="db-table">saude_prontuarios</div>
+      <div class="db-table">saude_consultas</div>
+      <div class="db-table">saude_exames</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#33cc66">💼 Empregabilidade</div>
+      <div class="db-table">emprego_empresas</div>
+      <div class="db-table">emprego_vagas</div>
+      <div class="db-table">emprego_candidaturas</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#cc44ff">📚 Cursos Gratuitos</div>
+      <div class="db-table">cursos_catalogo</div>
+      <div class="db-table">cursos_turmas</div>
+      <div class="db-table">cursos_inscricoes</div>
+      <div class="db-table">cursos_presencas</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#ffcc00">📈 Núcleo CRESCER</div>
+      <div class="db-table">crescer_empresas</div>
+      <div class="db-table">crescer_mentorias</div>
+      <div class="db-table">crescer_eventos</div>
+      <div class="db-table">crescer_participacoes</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#0099ff">🤝 Promoção Social</div>
+      <div class="db-table">social_acoes</div>
+      <div class="db-table">social_beneficiarios</div>
+      <div class="db-table">social_cestas</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#cc44ff">🎯 Núcleo de Apoio</div>
+      <div class="db-table">apoio_casos</div>
+      <div class="db-table">apoio_atendimentos</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#ff4444">⚽ Esporte</div>
+      <div class="db-table">esporte_modalidades</div>
+      <div class="db-table">esporte_atletas</div>
+      <div class="db-table">esporte_treinos</div>
+      <div class="db-table">esporte_presencas</div>
+    </div>
+    <div class="db-dept">
+      <div class="db-dept-title" style="color:#33cc66">🎪 Campanhas</div>
+      <div class="db-table">campanhas</div>
+      <div class="db-table">campanhas_participantes</div>
+    </div>
+    <div class="db-dept" style="border-color:rgba(0,153,255,.3)">
+      <div class="db-dept-title" style="color:#0099ff">🔗 Núcleo Central</div>
+      <div class="db-table">pessoas</div>
+      <div class="db-table">matriculas</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:var(--dark2);border:1px solid var(--border);border-radius:12px;font-size:.85rem;color:var(--muted)">
+    <strong style="color:var(--ciano)">Segurança:</strong> Todas as tabelas possuem Row Level Security (RLS) ativo no Supabase.
+    Dados sensíveis (prontuários, casos de apoio) são acessíveis apenas por usuários autenticados.
+    Cadastros públicos (vagas, cursos) são visíveis a todos. Em conformidade com a <strong style="color:#fff">LGPD</strong>.
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     6. TECNOLOGIAS
+══════════════════════════════════════════════ -->
+<section id="tecnologias">
+  <p class="section-label">Stack Tecnológica</p>
+  <h2 class="section-title">Tecnologias Utilizadas</h2>
+  <p class="section-desc">
+    Todas as tecnologias escolhidas são open-source, modernas, escaláveis e com
+    planos gratuitos generosos — reduzindo o custo de operação do CERPI ao mínimo possível.
+  </p>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-logo">⚛️</div>
+      <h4>Next.js 14 + TypeScript</h4>
+      <p>Framework React de última geração com App Router, Server Components e geração estática.
+      Alta performance, SEO otimizado e tipagem segura em todo o projeto.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🗄️</div>
+      <h4>Supabase (PostgreSQL)</h4>
+      <p>Banco de dados relacional com autenticação, storage de arquivos, RLS e API REST
+      automática. Open-source e compatível com LGPD.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">▲</div>
+      <h4>Vercel</h4>
+      <p>Deploy automático a cada push no GitHub. CDN global, SSL gratuito e preview
+      de cada branch. Zero configuração de servidor.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🎨</div>
+      <h4>Tailwind CSS</h4>
+      <p>Sistema de design utilitário com tokens de cor personalizados para a identidade
+      visual do CERPI. Responsivo por padrão.</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🔐</div>
+      <h4>Supabase Auth</h4>
+      <p>Autenticação completa com e-mail/senha, OAuth social e controle de sessão.
+      Políticas RLS por papel de usuário (admin, colaborador, público).</p>
+    </div>
+    <div class="tech-card">
+      <div class="tech-logo">🐙</div>
+      <h4>GitHub + CI/CD</h4>
+      <p>Controle de versão, histórico de todas as alterações e pipeline automático
+      de deploy a cada commit na branch main.</p>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     7. FUNCIONALIDADES
+══════════════════════════════════════════════ -->
+<section id="funcionalidades">
+  <p class="section-label">O que o Portal Entrega</p>
+  <h2 class="section-title">Funcionalidades</h2>
+  <p class="section-desc">
+    O portal foi concebido em fases. As funcionalidades marcadas como
+    <span style="color:var(--verde)">Entregue</span> já estão em produção.
+  </p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏠</div>
+      <h4>Landing Page Institucional</h4>
+      <p>Página inicial com apresentação do CERPI, todos os núcleos, notícias e CTA de cadastro.
+      Slideshow de fotos em background animado.</p>
+      <span class="feature-badge badge-done">✓ Entregue</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📝</div>
+      <h4>Cadastro Centralizado</h4>
+      <p>Formulário de cadastro público em /cadastro com dados pessoais completos,
+      perfil socioeconômico e seleção de núcleo de interesse.</p>
+      <span class="feature-badge badge-done">✓ Entregue</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏛️</div>
+      <h4>Página Quem Somos</h4>
+      <p>Página institucional com missão, visão, valores, equipe de coordenação
+      e números de impacto.</p>
+      <span class="feature-badge badge-done">✓ Entregue</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <h4>Páginas dos Núcleos</h4>
+      <p>Cada núcleo tem sua própria página com banner, descrição, CTA de inscrição
+      e navegação para outros núcleos.</p>
+      <span class="feature-badge badge-done">✓ Entregue</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <h4>Portal do Colaborador</h4>
+      <p>Área logada para coordenadores e colaboradores do CERPI gerenciarem
+      cadastros, vagas, atendimentos e relatórios por núcleo.</p>
+      <span class="feature-badge badge-soon">Em desenvolvimento</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💼</div>
+      <h4>Módulo de Vagas</h4>
+      <p>Publicação e gestão de vagas de emprego. Candidatura online,
+      acompanhamento de status e notificação por WhatsApp.</p>
+      <span class="feature-badge badge-soon">Em desenvolvimento</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📚</div>
+      <h4>Módulo de Cursos</h4>
+      <p>Catálogo de cursos gratuitos, turmas, inscrições, controle de presença
+      e emissão de certificado digital.</p>
+      <span class="feature-badge badge-soon">Em desenvolvimento</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💊</div>
+      <h4>Módulo Farmácia</h4>
+      <p>Controle de estoque, doações recebidas e dispensação de medicamentos
+      com histórico por beneficiário.</p>
+      <span class="feature-badge badge-future">Fase 3</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🦷</div>
+      <h4>Módulo Odontologia</h4>
+      <p>Prontuário digital, plano de tratamento por paciente, agendamento
+      e histórico de sessões odontológicas.</p>
+      <span class="feature-badge badge-future">Fase 3</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h4>Dashboard de Impacto</h4>
+      <p>Painel com métricas em tempo real: pessoas atendidas, vagas preenchidas,
+      cursos concluídos e certificados emitidos.</p>
+      <span class="feature-badge badge-future">Fase 4</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📜</div>
+      <h4>Transparência Pública</h4>
+      <p>Relatórios públicos de impacto social, prestação de contas e
+      publicações da associação — em conformidade com LGPD.</p>
+      <span class="feature-badge badge-future">Fase 4</span>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📱</div>
+      <h4>App Mobile (PWA)</h4>
+      <p>Progressive Web App para colaboradores acessarem o portal
+      diretamente no celular, sem instalação de aplicativo.</p>
+      <span class="feature-badge badge-future">Fase 5</span>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     8. ROADMAP
+══════════════════════════════════════════════ -->
+<section id="roadmap">
+  <p class="section-label">Fases do Projeto</p>
+  <h2 class="section-title">Roadmap de Desenvolvimento</h2>
+  <p class="section-desc">O portal é entregue em fases evolutivas, priorizando o que gera
+  impacto imediato para a comunidade e os colaboradores do CERPI.</p>
+
+  <div class="roadmap">
+    <div class="fase">
+      <div class="fase-num done">1</div>
+      <div class="fase-content">
+        <div class="fase-status done">✓ Concluída</div>
+        <h4>Fase 1 — Fundação & Identidade Visual</h4>
+        <p>Landing page institucional, identidade visual CERPI (ciano #0099ff / amarelo #ffcc00),
+        header com 4 camadas, footer, seção de núcleos com fotos reais,
+        página Quem Somos, formulário de cadastro integrado ao Supabase e deploy no Vercel.</p>
+      </div>
+    </div>
+    <div class="fase">
+      <div class="fase-num current">2</div>
+      <div class="fase-content">
+        <div class="fase-status current">▶ Em andamento</div>
+        <h4>Fase 2 — Banco de Dados Completo & Portal Administrativo</h4>
+        <p>Schema completo com 32 tabelas para todos os 10 núcleos, políticas RLS,
+        área de login para colaboradores, visualização e gestão de cadastros,
+        módulo de vagas e módulo de cursos com inscrições.</p>
+      </div>
+    </div>
+    <div class="fase">
+      <div class="fase-num next">3</div>
+      <div class="fase-content">
+        <div class="fase-status next">◎ Próxima</div>
+        <h4>Fase 3 — Módulos Clínicos</h4>
+        <p>Prontuários digitais de odontologia e saúde, controle de farmácia (estoque e
+        dispensação), agendamentos, controle de presença nos treinos de esporte
+        e histórico de atendimentos por pessoa.</p>
+      </div>
+    </div>
+    <div class="fase">
+      <div class="fase-num future">4</div>
+      <div class="fase-content">
+        <div class="fase-status future">○ Planejada</div>
+        <h4>Fase 4 — Dashboard de Impacto & Transparência</h4>
+        <p>Painel público de métricas de impacto social, relatórios para prestadores de contas,
+        página de transparência pública, certificados digitais automáticos e
+        integração com WhatsApp para notificações.</p>
+      </div>
+    </div>
+    <div class="fase">
+      <div class="fase-num future">5</div>
+      <div class="fase-content">
+        <div class="fase-status future">○ Planejada</div>
+        <h4>Fase 5 — App Mobile (PWA) & Integrações</h4>
+        <p>Progressive Web App para uso no celular pelos colaboradores, modo offline,
+        integração com plataformas de vagas (Adiante Brasil), agenda online
+        para consultas e emissão de carteirinha digital do beneficiário.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     9. POR QUE CONNECTIONCYBEROS
+══════════════════════════════════════════════ -->
+<section id="connectioncyberos">
+  <p class="section-label">Nossos Diferenciais</p>
+  <h2 class="section-title">Por que Connection Cyber Assessoria e Treinamento Tecnológico?</h2>
+  <p class="section-desc">
+    Mais do que desenvolvimento de software — somos parceiros estratégicos que entendem
+    o contexto social do CERPI e entregam tecnologia de ponta acessível para organizações
+    do terceiro setor.
+  </p>
+
+  <div class="diferencial-grid">
+    <div class="diferencial">
+      <div class="diferencial-icon">🎯</div>
+      <h4>Entendemos o Terceiro Setor</h4>
+      <p>Desenvolvemos o portal com foco na realidade de associações — gratuidade para
+      beneficiários, simplicidade para colaboradores voluntários e segurança para dados sensíveis.</p>
+    </div>
+    <div class="diferencial">
+      <div class="diferencial-icon">⚡</div>
+      <h4>Stack Moderna e Escalável</h4>
+      <p>Next.js 14, Supabase e Vercel são tecnologias usadas pelas maiores empresas do mundo.
+      O portal do CERPI tem a mesma base tecnológica de startups de alto crescimento.</p>
+    </div>
+    <div class="diferencial">
+      <div class="diferencial-icon">🔒</div>
+      <h4>Segurança e Conformidade LGPD</h4>
+      <p>Dados pessoais protegidos por RLS, autenticação segura, criptografia em trânsito
+      e políticas claras de acesso por nível de usuário.</p>
+    </div>
+    <div class="diferencial">
+      <div class="diferencial-icon">🚀</div>
+      <h4>Deploy Contínuo</h4>
+      <p>Cada melhoria vai para produção automaticamente via GitHub + Vercel.
+      O CERPI sempre tem a versão mais atualizada do portal sem interrupções.</p>
+    </div>
+    <div class="diferencial">
+      <div class="diferencial-icon">📐</div>
+      <h4>Arquitetura Preparada para Crescer</h4>
+      <p>Adicionar um novo departamento não exige reescrever o sistema — basta criar
+      as tabelas do novo núcleo e adicioná-lo ao array de configuração.</p>
+    </div>
+    <div class="diferencial">
+      <div class="diferencial-icon">🤝</div>
+      <h4>Parceria de Longo Prazo</h4>
+      <p>Não entregamos um projeto e sumimos. Somos parceiros do CERPI em todas as fases,
+      com suporte, evolução contínua e alinhamento com os objetivos da associação.</p>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════
+     10. CONTATO / PRÓXIMOS PASSOS
+══════════════════════════════════════════════ -->
+<section id="contato" class="full">
+  <div class="inner">
+    <p class="section-label" style="justify-content:center;display:flex">Próximos Passos</p>
+    <h2>Pronto para avançar?</h2>
+    <p>
+      O portal já está no ar em <strong style="color:var(--ciano)">portal-cidadania-os.vercel.app</strong>.
+      A Fase 2 está em desenvolvimento ativo. Vamos juntos construir o maior
+      portal social de Piracicaba.
+    </p>
+    <div>
+      <a class="cta-btn" href="https://portal-cidadania-os.vercel.app" target="_blank">
+        Ver Portal ao Vivo ↗
+      </a>
+      <a class="cta-btn outline" href="mailto:portalcidadaniaos@gmail.com">
+        Falar com a Equipe
+      </a>
+    </div>
+
+    <div class="footer-credits">
+      <p>
+        Documento preparado por <strong>Connection Cyber Assessoria e Treinamento Tecnológico</strong> para o
+        <strong>Centro Restaurando Cidadania — CERPI</strong> · Piracicaba, SP · 2026
+      </p>
+      <p style="margin-top:.5rem;font-size:.72rem">
+        Confidencial · Este documento é de uso exclusivo do CERPI e da Connection Cyber Assessoria e Treinamento Tecnológico
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Destaca link ativo na nav ao rolar
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--ciano)' : '';
+    });
+  });
+</script>
+
+</body>
+</html>
