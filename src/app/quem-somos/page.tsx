@@ -112,7 +112,7 @@ export default function QuemSomosPage() {
             <div className="relative">
               <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-[#6600cc]/40 shadow-2xl shadow-[#cc44ff]/20">
                 <img
-                  src="/quem-somos-foto.jpg"
+                  src="/QUEM-SOMO-FOTO.jpg"
                   alt="Centro Restaurando Cidadania"
                   className="w-full h-full object-cover"
                   onError={(e) => {
