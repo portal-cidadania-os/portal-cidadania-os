@@ -297,6 +297,71 @@
     }
     .footer-credits strong { color: var(--amarelo); }
 
+    /* ── DIAGRAMA INTERATIVO ── */
+    .dia-wrap {
+      background: var(--dark3); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem 2rem 2rem;
+      margin-bottom: 2.5rem; position: relative; overflow: hidden;
+    }
+    .dia-header { text-align: center; margin-bottom: 2rem; }
+    .dia-header h3 { font-size: 1.5rem; font-weight: 900; margin-bottom: .35rem; }
+    .dia-header p  { color: var(--muted); font-size: .85rem; }
+    .dia-container { position: relative; width: 100%; min-height: 520px; }
+    .dia-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+    .dia-card {
+      position: absolute; border-radius: 12px; padding: .9rem 1.1rem;
+      cursor: pointer; z-index: 1; transition: transform .2s, box-shadow .2s;
+      border: 1.5px solid; font-size: .78rem; min-width: 148px;
+      text-decoration: none;
+    }
+    .dia-card:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+    .dia-card-title { font-weight: 800; font-size: .88rem; margin-bottom: .3rem; display: flex; align-items: center; gap: 6px; }
+    .dia-card-tables { color: rgba(255,255,255,.5); font-size: .7rem; line-height: 1.6; }
+    /* Central */
+    .dia-pessoas {
+      background: rgba(0,153,255,.15); border-color: var(--ciano);
+      left: 50%; transform: translateX(-50%); top: 0; min-width: 200px; text-align: center;
+    }
+    .dia-pessoas .dia-card-title { justify-content: center; color: var(--ciano); font-size: 1rem; }
+    .dia-pessoas .dia-card-tables { color: rgba(0,153,255,.7); }
+    .dia-pessoas:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); }
+    /* Matriculas */
+    .dia-matriculas {
+      background: rgba(255,204,0,.1); border-color: var(--amarelo);
+      left: 50%; transform: translateX(-50%); top: 160px; min-width: 170px; text-align: center;
+    }
+    .dia-matriculas .dia-card-title { justify-content: center; color: var(--amarelo); }
+    .dia-matriculas:hover { transform: translateX(-50%) translateY(-3px) scale(1.02); }
+    /* Farmácia */
+    .dia-farm { background: rgba(255,153,68,.12); border-color: #ff9944; top: 20px; left: 0; }
+    .dia-farm .dia-card-title { color: #ff9944; }
+    /* Odonto */
+    .dia-odonto { background: rgba(255,102,204,.12); border-color: #ff66cc; top: 20px; right: 0; }
+    .dia-odonto .dia-card-title { color: #ff66cc; }
+    /* Emprego */
+    .dia-emprego { background: rgba(51,204,102,.1); border-color: #33cc66; top: 210px; left: 0; }
+    .dia-emprego .dia-card-title { color: #33cc66; }
+    /* Saúde */
+    .dia-saude { background: rgba(255,68,68,.1); border-color: #ff4444; top: 210px; right: 0; }
+    .dia-saude .dia-card-title { color: #ff4444; }
+    /* Bottom row */
+    .dia-cursos    { background: rgba(204,68,255,.1); border-color: #cc44ff; bottom: 0; left: 0; }
+    .dia-crescer   { background: rgba(255,204,0,.1);  border-color: var(--amarelo); bottom: 0; left: calc(25% - 10px); }
+    .dia-promocao  { background: rgba(0,153,255,.1);  border-color: var(--ciano); bottom: 0; right: calc(25% - 10px); }
+    .dia-esporte   { background: rgba(255,68,68,.1);  border-color: #ff4444; bottom: 0; right: 0; }
+    .dia-cursos .dia-card-title    { color: #cc44ff; }
+    .dia-crescer .dia-card-title   { color: var(--amarelo); }
+    .dia-promocao .dia-card-title  { color: var(--ciano); }
+    .dia-esporte .dia-card-title   { color: #ff4444; }
+    .dia-apoio  { background: rgba(255,0,102,.1);  border-color: #ff0066; top: 210px; left: calc(50% - 250px); }
+    .dia-apoio .dia-card-title { color: #ff0066; }
+    .dia-tip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(0,153,255,.1); border: 1px solid rgba(0,153,255,.2);
+      color: var(--ciano); font-size: .72rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px; margin-top: 1.5rem;
+    }
+
     /* ── PRINT ── */
     @media print {
       nav { display: none; }
@@ -557,6 +622,78 @@
     Dados sensíveis protegidos por RLS (Row Level Security) no Supabase.
   </p>
 
+  <!-- ── DIAGRAMA INTERATIVO ── -->
+  <div class="dia-wrap">
+    <div class="dia-header">
+      <p class="section-label" style="justify-content:center;display:flex">Arquitetura Visual</p>
+      <h3>Entenda esta estrutura</h3>
+      <p>Clique em qualquer núcleo para ver os detalhes das tabelas</p>
+      <span class="dia-tip">👆 Todos os cartões são clicáveis</span>
+    </div>
+
+    <div class="dia-container" id="diaContainer">
+      <!-- SVG para as linhas de conexão -->
+      <svg class="dia-svg" id="diaSvg"></svg>
+
+      <!-- CENTRAL: pessoas -->
+      <div class="dia-card dia-pessoas" id="dia-pessoas" onclick="document.getElementById('det-pessoas').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">🗂️ pessoas</div>
+        <div class="dia-card-tables">TABELA CENTRAL — 1 registro por CPF<br>id · cpf · nome · whatsapp · email<br>bairro · cidade · renda · escolaridade</div>
+      </div>
+
+      <!-- Matriculas -->
+      <div class="dia-card dia-matriculas" id="dia-matriculas" onclick="document.getElementById('det-pessoas').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">🔗 matriculas</div>
+        <div class="dia-card-tables">pessoa_id · nucleo · status · data</div>
+      </div>
+
+      <!-- Farmácia -->
+      <div class="dia-card dia-farm" id="dia-farm" onclick="document.getElementById('det-farm').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">💊 Farmácia Solidária</div>
+        <div class="dia-card-tables">farmacia_remedios<br>farmacia_estoque<br>farmacia_atendimentos</div>
+      </div>
+
+      <!-- Odontologia -->
+      <div class="dia-card dia-odonto" id="dia-odonto" onclick="document.getElementById('det-odonto').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">🦷 Sorria com Cristo</div>
+        <div class="dia-card-tables">odonto_prontuarios<br>odonto_tratamentos<br>odonto_consultas</div>
+      </div>
+
+      <!-- Empregabilidade -->
+      <div class="dia-card dia-emprego" id="dia-emprego" onclick="document.getElementById('det-emprego').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">💼 Empregabilidade</div>
+        <div class="dia-card-tables">emprego_empresas<br>emprego_vagas<br>emprego_candidaturas</div>
+      </div>
+
+      <!-- Saúde -->
+      <div class="dia-card dia-saude" id="dia-saude" onclick="document.getElementById('det-saude').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">🏥 Madureira Saúde</div>
+        <div class="dia-card-tables">saude_prontuarios<br>saude_consultas<br>saude_exames</div>
+      </div>
+
+      <!-- Bottom row -->
+      <div class="dia-card dia-cursos" id="dia-cursos" onclick="document.getElementById('det-cursos').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">📚 Cursos Gratuitos</div>
+        <div class="dia-card-tables">cursos_catalogo<br>cursos_turmas<br>cursos_inscricoes</div>
+      </div>
+      <div class="dia-card dia-crescer" id="dia-crescer" onclick="document.getElementById('det-crescer').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">📈 Núcleo CRESCER</div>
+        <div class="dia-card-tables">crescer_empresas<br>crescer_mentorias<br>crescer_eventos</div>
+      </div>
+      <div class="dia-card dia-promocao" id="dia-promocao" onclick="document.getElementById('det-social').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">🤝 Promoção Social</div>
+        <div class="dia-card-tables">social_acoes<br>social_beneficiarios<br>social_cestas</div>
+      </div>
+      <div class="dia-card dia-esporte" id="dia-esporte" onclick="document.getElementById('det-esporte').scrollIntoView({behavior:'smooth'})">
+        <div class="dia-card-title">⚽ Núcleo Esporte</div>
+        <div class="dia-card-tables">esporte_atletas<br>esporte_treinos<br>esporte_presencas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Âncoras para scroll dos cliques -->
+  <div id="det-pessoas"></div>
+
   <div class="db-central">
     <h3>pessoas — Tabela Central</h3>
     <p>1 registro por CPF · Compartilhada por todos os núcleos · Atualização reflete em tempo real</p>
@@ -577,45 +714,45 @@
   </div>
 
   <div class="db-grid">
-    <div class="db-dept">
+    <div class="db-dept" id="det-farm">
       <div class="db-dept-title" style="color:#ff9944">💊 Farmácia Solidária</div>
       <div class="db-table">farmacia_remedios</div>
       <div class="db-table">farmacia_estoque</div>
       <div class="db-table">farmacia_atendimentos</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-odonto">
       <div class="db-dept-title" style="color:#ff66cc">🦷 Odontologia</div>
       <div class="db-table">odonto_prontuarios</div>
       <div class="db-table">odonto_tratamentos</div>
       <div class="db-table">odonto_consultas</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-saude">
       <div class="db-dept-title" style="color:#ff4444">🏥 Madureira Saúde</div>
       <div class="db-table">saude_prontuarios</div>
       <div class="db-table">saude_consultas</div>
       <div class="db-table">saude_exames</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-emprego">
       <div class="db-dept-title" style="color:#33cc66">💼 Empregabilidade</div>
       <div class="db-table">emprego_empresas</div>
       <div class="db-table">emprego_vagas</div>
       <div class="db-table">emprego_candidaturas</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-cursos">
       <div class="db-dept-title" style="color:#cc44ff">📚 Cursos Gratuitos</div>
       <div class="db-table">cursos_catalogo</div>
       <div class="db-table">cursos_turmas</div>
       <div class="db-table">cursos_inscricoes</div>
       <div class="db-table">cursos_presencas</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-crescer">
       <div class="db-dept-title" style="color:#ffcc00">📈 Núcleo CRESCER</div>
       <div class="db-table">crescer_empresas</div>
       <div class="db-table">crescer_mentorias</div>
       <div class="db-table">crescer_eventos</div>
       <div class="db-table">crescer_participacoes</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-social">
       <div class="db-dept-title" style="color:#0099ff">🤝 Promoção Social</div>
       <div class="db-table">social_acoes</div>
       <div class="db-table">social_beneficiarios</div>
@@ -626,7 +763,7 @@
       <div class="db-table">apoio_casos</div>
       <div class="db-table">apoio_atendimentos</div>
     </div>
-    <div class="db-dept">
+    <div class="db-dept" id="det-esporte">
       <div class="db-dept-title" style="color:#ff4444">⚽ Esporte</div>
       <div class="db-table">esporte_modalidades</div>
       <div class="db-table">esporte_atletas</div>
@@ -961,18 +1098,102 @@
 </section>
 
 <script>
-  // Destaca link ativo na nav ao rolar
+  // ── Nav ativa ao rolar ──
   const sections = document.querySelectorAll('section[id]');
-  const links = document.querySelectorAll('.nav-links a');
+  const links    = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) current = s.id;
-    });
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
     links.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--ciano)' : '';
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--ciano)' : '';
     });
+  });
+
+  // ── Diagrama: desenha linhas SVG conectando os cards ──
+  function drawLines() {
+    const svg       = document.getElementById('diaSvg');
+    const container = document.getElementById('diaContainer');
+    if (!svg || !container) return;
+
+    const cRect = container.getBoundingClientRect();
+    svg.setAttribute('viewBox', `0 0 ${cRect.width} ${cRect.height}`);
+    svg.innerHTML = '';
+
+    // Pares: [origem, destino, cor]
+    const pairs = [
+      ['dia-pessoas',   'dia-farm',      '#ff9944'],
+      ['dia-pessoas',   'dia-odonto',    '#ff66cc'],
+      ['dia-pessoas',   'dia-matriculas','#ffcc00'],
+      ['dia-matriculas','dia-emprego',   '#33cc66'],
+      ['dia-matriculas','dia-saude',     '#ff4444'],
+      ['dia-matriculas','dia-cursos',    '#cc44ff'],
+      ['dia-matriculas','dia-crescer',   '#ffcc00'],
+      ['dia-matriculas','dia-promocao',  '#0099ff'],
+      ['dia-matriculas','dia-esporte',   '#ff4444'],
+    ];
+
+    pairs.forEach(([fromId, toId, color]) => {
+      const fromEl = document.getElementById(fromId);
+      const toEl   = document.getElementById(toId);
+      if (!fromEl || !toEl) return;
+
+      const fR = fromEl.getBoundingClientRect();
+      const tR = toEl.getBoundingClientRect();
+
+      // Centros relativos ao container
+      const x1 = fR.left + fR.width  / 2 - cRect.left;
+      const y1 = fR.top  + fR.height / 2 - cRect.top;
+      const x2 = tR.left + tR.width  / 2 - cRect.left;
+      const y2 = tR.top  + tR.height / 2 - cRect.top;
+
+      // Borda de saída (evita sobrepor o card)
+      const dx = x2 - x1, dy = y2 - y1;
+      const len = Math.sqrt(dx * dx + dy * dy) || 1;
+      const sx1 = x1 + dx / len * (fR.width  / 2 + 4);
+      const sy1 = y1 + dy / len * (fR.height / 2 + 4);
+      const sx2 = x2 - dx / len * (tR.width  / 2 + 4);
+      const sy2 = y2 - dy / len * (tR.height / 2 + 4);
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', sx1); line.setAttribute('y1', sy1);
+      line.setAttribute('x2', sx2); line.setAttribute('y2', sy2);
+      line.setAttribute('stroke', color);
+      line.setAttribute('stroke-width', '1.5');
+      line.setAttribute('stroke-dasharray', '5,4');
+      line.setAttribute('opacity', '0.5');
+      svg.appendChild(line);
+
+      // Ponto de chegada
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', sx2); circle.setAttribute('cy', sy2);
+      circle.setAttribute('r', '3'); circle.setAttribute('fill', color);
+      circle.setAttribute('opacity', '0.7');
+      svg.appendChild(circle);
+    });
+  }
+
+  // Calcula altura do container com base nos cards
+  function adjustHeight() {
+    const container = document.getElementById('diaContainer');
+    if (!container) return;
+    // Garante altura mínima para os cards ficarem visíveis
+    const cards = container.querySelectorAll('.dia-card');
+    let maxBottom = 0;
+    const cTop = container.getBoundingClientRect().top;
+    cards.forEach(c => {
+      const b = c.getBoundingClientRect().bottom - cTop;
+      if (b > maxBottom) maxBottom = b;
+    });
+    container.style.minHeight = (maxBottom + 20) + 'px';
+  }
+
+  window.addEventListener('load', () => {
+    adjustHeight();
+    setTimeout(drawLines, 100);
+  });
+  window.addEventListener('resize', () => {
+    adjustHeight();
+    drawLines();
   });
 </script>
 
