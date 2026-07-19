@@ -1,0 +1,24 @@
+{
+  "workspace": "C:\\Projetos",
+  "onedrive": "C:\\Users\\joaqu\\OneDrive\\Projetos",
+  "external": "E:\\Projetos",
+  "snapshots": "E:\\Projetos\\Snapshots",
+  "github": {
+    "organization": "portal-cidadania-os",
+    "defaultBranch": "main"
+  },
+  "excludedDirectories": [
+    "node_modules",
+    ".next",
+    ".git",
+    "dist",
+    ".turbo"
+  ],
+  "logTypes": [
+    "backup",
+    "restore",
+    "git",
+    "database",
+    "health"
+  ]
+}

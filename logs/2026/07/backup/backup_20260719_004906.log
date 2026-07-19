@@ -1,0 +1,22 @@
+﻿[00:49:06] ============================================================
+[00:49:06]   Portal Cidadania OS (CERPI) | Backup Manager v1.0
+[00:49:06] ============================================================
+[00:49:06] Inicio: 19/07/2026 00:49:06
+[00:49:06] Raiz:   C:\Projetos\portal-cidadania-os
+[00:49:06] Log:    C:\Projetos\portal-cidadania-os\logs\2026\07\backup\backup_20260719_004906.log
+[00:49:06] 
+[00:49:06] 
+[00:49:06] SYNC [OneDrive] C:\Projetos\portal-cidadania-os -> C:\Users\joaqu\OneDrive\Projetos\portal-cidadania-os
+[00:49:07]   [OK] OneDrive sincronizado (robocopy: 3)
+[00:49:07] 
+[00:49:07] SYNC [HD Externo] C:\Projetos\portal-cidadania-os -> E:\Projetos\portal-cidadania-os
+[00:49:07]   [OK] HD Externo sincronizado (robocopy: 1)
+[00:49:07] 
+[00:49:07] SNAPSHOT ZIP
+[00:49:19]   [OK] portal-cidadania-os_20260719_004906.zip (76.22 MB)
+[00:49:19] 
+[00:49:19] BANCO DE DADOS (pg_dump)
+[00:49:19]   [ERRO] Variavel PORTAL_CIDADANIA_SUPABASE_DB_URL nao definida.
+[00:49:19]          Defina no sistema ou num .env nao versionado.
+[00:49:19] 
+[00:49:19] GIT COMMIT + PUSH
