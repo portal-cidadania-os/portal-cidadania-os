@@ -25,7 +25,7 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
         {/* Imagem de fundo */}
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${nucleo.imagem})` }}
+          style={{ backgroundImage: `url(${nucleo.banner})` }}
         />
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />

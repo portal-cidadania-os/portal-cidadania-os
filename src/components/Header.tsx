@@ -46,7 +46,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-3 select-none group">
             <div className="w-10 h-10 rounded-lg bg-brand-ciano flex items-center justify-center flex-shrink-0">
               <img
-                src="/LOGO.png"
+                src="/institucional/logo.png"
                 alt="Logo Portal Cidadania"
                 className="h-7 w-auto object-contain"
                 onError={(e) => {

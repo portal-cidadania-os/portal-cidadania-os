@@ -9,13 +9,13 @@
 // ============================================================
 
 const IMAGES = [
-  "/portal.png",
-  "/cursos.png",
-  "/crescer.png",
-  "/empregabilidade.png",
-  "/saude.png",
-  "/dentista.png",
-  "/Farmacia.png",
+  "/slides/portal.png",
+  "/slides/cursos.png",
+  "/slides/crescer.png",
+  "/slides/empregabilidade.png",
+  "/slides/saude.png",
+  "/slides/dentista.png",
+  "/slides/farmacia.png",
 ];
 
 const DURATION_PER_IMAGE = 6; // segundos visível por imagem

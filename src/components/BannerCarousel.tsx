@@ -31,7 +31,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Conectando pessoas a oportunidades que transformam vidas em Piracicaba.",
     destaque: "Carol Alves · Juliana Galvão · Raquel Campos",
     href: "/",
-    imagem: "/portal.png",
+    imagem: "/slides/portal.png",
     acento: "#0099ff",
   },
   {
@@ -41,7 +41,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Auto Maquiagem · LIBRAS · Manicure · Auxiliar de Cabeleireiro",
     destaque: "Turmas abertas",
     href: "/cursos",
-    imagem: "/cursos.png",
+    imagem: "/slides/cursos.png",
     acento: "#cc44ff",
   },
   {
@@ -51,7 +51,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Encontro de Mulheres Empreendedoras · Desenvolvimento de líderes locais.",
     destaque: "Lider Carol Alves · Mayara Santos · Lider Pr. Henrique",
     href: "/crescer",
-    imagem: "/crescer.png",
+    imagem: "/slides/crescer.png",
     acento: "#ffcc00",
   },
   {
@@ -61,7 +61,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Vagas de emprego, cursos e desenvolvimento pessoal. Parceria Adiante Brasil.",
     destaque: "Coord. Zezinho Monteiro",
     href: "/vagas",
-    imagem: "/empregabilidade.png",
+    imagem: "/slides/empregabilidade.png",
     acento: "#33cc66",
   },
   {
@@ -71,7 +71,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Medicina · Nutrição · Psicologia · Atendimento humanizado para a comunidade.",
     destaque: "Fabio Rufino · Dra. Paola · Sulamita · Nutricionista Fábiana · Psicóloga Gabriela",
     href: "/saude",
-    imagem: "/saude.png",
+    imagem: "/slides/saude.png",
     acento: "#ff4444",
   },
   {
@@ -81,7 +81,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Atendimento odontológico gratuito para crianças e adultos da comunidade.",
     destaque: "@sorriacomcristo_admp",
     href: "/saude#odontologia",
-    imagem: "/dentista.png",
+    imagem: "/slides/dentista.png",
     acento: "#ff66cc",
   },
   {
@@ -91,7 +91,7 @@ const SLIDES: Slide[] = [
     subtitulo: "Cama hospitalar · Cadeira de roda · Andador · Medicamentos para a comunidade.",
     destaque: "Sulamita · Pastor Dri · Junior Minharo",
     href: "/farmacia",
-    imagem: "/Farmacia.png",
+    imagem: "/slides/farmacia.png",
     acento: "#ff9944",
   },
 ];

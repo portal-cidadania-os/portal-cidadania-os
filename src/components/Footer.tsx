@@ -47,7 +47,7 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-brand-ciano flex items-center justify-center flex-shrink-0">
                 <img
-                  src="/LOGO.png"
+                  src="/institucional/logo.png"
                   alt="Logo"
                   className="h-6 w-auto object-contain"
                 />
