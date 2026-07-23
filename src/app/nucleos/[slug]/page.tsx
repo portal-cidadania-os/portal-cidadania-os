@@ -30,11 +30,18 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
 
-        {/* Conteúdo sobre o banner */}
-        <div className="relative z-10 max-w-5xl mx-auto px-6 flex flex-col justify-end pb-14 pt-32 md:pt-40" style={{ minHeight: "60vh" }}>
-          {/* Badge */}
+        {/* Foto pastores — desabilitada provisoriamente */}
+
+        {/* Conteúdo sobre o banner — alinhado à direita */}
+        <div className="relative z-10 w-full px-10 flex flex-col items-end justify-end pb-14 pt-32 md:pt-40" style={{ minHeight: "60vh" }}>
+          {/* Subtítulo — extrema direita */}
+          <p className="text-white/80 text-lg md:text-xl font-semibold mb-3 text-right">
+            {nucleo.subtitulo}
+          </p>
+
+          {/* Badge #MadureiraTem — abaixo do subtítulo, extrema direita */}
           <span
-            className="inline-block text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full mb-4 self-start"
+            className="inline-block text-xs font-extrabold uppercase tracking-widest px-3 py-1 rounded-full"
             style={{
               background: `${nucleo.acento}30`,
               color: nucleo.acento,
@@ -43,13 +50,6 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
           >
             #MadureiraTem
           </span>
-
-          <h1 className="text-white text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-3">
-            {nucleo.titulo}
-          </h1>
-          <p className="text-white/70 text-lg md:text-xl font-medium">
-            {nucleo.subtitulo}
-          </p>
         </div>
       </section>
 

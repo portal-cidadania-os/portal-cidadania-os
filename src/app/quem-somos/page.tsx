@@ -16,7 +16,7 @@ export default function QuemSomosPage() {
         {/* Gradiente decorativo */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#6600cc]/20 via-transparent to-[#cc00ff]/10 pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-8 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-8 py-10 md:py-14 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
           {/* ── Coluna esquerda: texto ── */}
           <div>

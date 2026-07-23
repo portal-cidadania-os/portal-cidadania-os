@@ -6,11 +6,9 @@ import { supabase } from "@/lib/supabase";
 import type { Session } from "@supabase/supabase-js";
 
 // ============================================================
-// Portal Cidadania OS — Header 4 Camadas (inspirado no topo4)
-// Camada 1: Barra de utilidade (transparência, ouvidoria, LGPD)
-// Camada 2: Identidade (logo + nome) + 3 CTAs
-// Camada 3: Navegação institucional
-// Camada 4: Navegação de conteúdo (brand-ciano)
+// Portal Cidadania OS — Header 2 Camadas
+// Camada 1: Logo + Nav institucional (centro) + CTAs (direita)
+// Camada 2: Navegação de conteúdo (brand-ciano)
 // ============================================================
 
 export default function Header() {
@@ -38,25 +36,23 @@ export default function Header() {
   return (
     <header className="sticky top-0 w-full z-50 shadow-sm">
 
-      {/* ── CAMADA 2: Identidade + CTAs ── */}
+      {/* ── CAMADA 1: Logo + Nav institucional + CTAs ── */}
       <div className="bg-white border-b border-neutral-100">
-        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
 
           {/* Logo + Nome */}
-          <Link href="/" className="flex items-center gap-3 select-none group">
+          <Link href="/" className="flex items-center gap-3 select-none group flex-shrink-0">
             <div className="w-10 h-10 rounded-lg bg-brand-ciano flex items-center justify-center flex-shrink-0">
               <img
                 src="/institucional/logo.png"
                 alt="Logo Portal Cidadania"
                 className="h-7 w-auto object-contain"
                 onError={(e) => {
-                  // Fallback se a imagem não carregar
                   (e.target as HTMLImageElement).style.display = "none";
                 }}
               />
             </div>
             <div className="flex flex-col leading-tight">
-              {/* PLACEHOLDER: Substitua pelo nome oficial da associação */}
               <span className="text-[10px] text-neutral-400 font-semibold uppercase tracking-widest hidden sm:block">
                 Associação [Nome Oficial]
               </span>
@@ -66,15 +62,33 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* CTAs — desktop */}
-          <div className="hidden md:flex items-center gap-2">
-            <Link
-              href="/certificados/validar"
-              className="text-neutral-600 hover:text-black border border-neutral-300 hover:border-neutral-400 font-semibold text-xs px-4 py-2 rounded-md transition-all"
-            >
-              Validar Certificado
+          {/* Nav institucional — centro, só desktop */}
+          <nav className="hidden md:flex items-center gap-5 flex-1 justify-center">
+            <Link href="/quem-somos" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              Quem Somos
             </Link>
+            <Link href="/associe-se" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              Associe-se
+            </Link>
+            <Link href="/transparencia" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              Transparência
+            </Link>
+            <Link href="/parceiros" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              Parceiros
+            </Link>
+            <Link href="/noticias" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              Notícias
+            </Link>
+            <Link href="/perguntas-frequentes" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              FAQ
+            </Link>
+            <Link href="/fale-conosco" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors whitespace-nowrap">
+              Fale Conosco
+            </Link>
+          </nav>
 
+          {/* CTAs — direita, só desktop */}
+          <div className="hidden md:flex items-center gap-2 flex-shrink-0">
             {session ? (
               <>
                 <Link
@@ -123,33 +137,6 @@ export default function Header() {
             </svg>
           </button>
 
-        </div>
-      </div>
-
-      {/* ── CAMADA 3: Navegação Institucional ── */}
-      <div className="bg-white border-b border-neutral-100 hidden md:block">
-        <div className="max-w-7xl mx-auto px-6 py-2 flex items-center gap-6">
-          <Link href="/quem-somos" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            Quem Somos
-          </Link>
-          <Link href="/associe-se" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            Associe-se
-          </Link>
-          <Link href="/transparencia" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            Transparência
-          </Link>
-          <Link href="/parceiros" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            Parceiros
-          </Link>
-          <Link href="/noticias" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            Notícias
-          </Link>
-          <Link href="/perguntas-frequentes" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            FAQ
-          </Link>
-          <Link href="/fale-conosco" className="text-neutral-600 hover:text-black font-medium text-xs transition-colors py-1">
-            Fale Conosco
-          </Link>
         </div>
       </div>
 

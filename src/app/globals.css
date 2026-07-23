@@ -24,16 +24,23 @@ body {
   animation: movimentoSuave 25s linear infinite;
 }
 
-/* Slideshow de imagens — fade entre múltiplas fotos
+/* Slideshow de imagens — slide da esquerda para direita + fade
    Ciclo total: IMAGES.length × 6s (configurado no BgSlideshow.tsx)
-   Cada imagem: fade-in 0.5s → visível 5s → fade-out 0.5s */
+   10 imagens → 1/10 = 10% por janela */
 @keyframes bgSlideshow {
-  /* 1/7 do ciclo = 14.3% → cada imagem ocupa essa janela */
   0%    { opacity: 0; }
-  1.2%  { opacity: 1; } /* fade in em 0.5s */
-  13.1% { opacity: 1; } /* permanece até 5.5s */
-  14.3% { opacity: 0; } /* fade out em 0.5s */
-  100%  { opacity: 0; } /* espera o restante do ciclo */
+  1.2%  { opacity: 1; }
+  8.8%  { opacity: 1; }
+  10%   { opacity: 0; }
+  100%  { opacity: 0; }
+}
+
+/* Slide da esquerda para direita com fade in/out */
+@keyframes bgSlideFromLeft {
+  0%    { transform: translateX(-100%); opacity: 0; }
+  5%    { transform: translateX(0);     opacity: 1; }
+  85%   { transform: translateX(0);     opacity: 1; }
+  100%  { transform: translateX(0);     opacity: 0; }
 }
 
 /* Fundo 2 — alternativo (Footer)
