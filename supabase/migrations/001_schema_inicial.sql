@@ -2,7 +2,7 @@
 -- Migration 001 — Schema Inicial
 -- Portal Cidadania OS (CERPI)
 -- Criado em: 2026-07-19
--- Aplicado em staging:   pendente
+-- Aplicado em staging:   2026-07-23
 -- Aplicado em producao:  pendente
 --
 -- Conteudo: estrutura completa do banco
