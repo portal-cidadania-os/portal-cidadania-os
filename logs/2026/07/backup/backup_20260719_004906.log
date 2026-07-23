@@ -20,3 +20,26 @@
 [00:49:19]          Defina no sistema ou num .env nao versionado.
 [00:49:19] 
 [00:49:19] GIT COMMIT + PUSH
+[00:49:20]   [main bed6b67] backup: 19/07/2026 00:49
+[00:49:20]    7 files changed, 1133 insertions(+)
+[00:49:20]    create mode 100644 config/paths.json
+[00:49:20]    create mode 100644 logs/2026/07/backup/backup_20260719_004906.log
+[00:49:20]    create mode 100644 scripts/backup-portal-cidadania.ps1
+[00:49:20]    create mode 100644 scripts/import-pessoas.ts
+[00:49:20]    create mode 100644 scripts/init-portal-cidadania-folders.ps1
+[00:49:20]    create mode 100644 scripts/restore-portal-cidadania.ps1
+[00:49:20]    create mode 100644 scripts/verify-portal-cidadania.ps1
+[00:49:23]   To https://github.com/portal-cidadania-os/portal-cidadania-os.git
+[00:49:23]      5313cbb..bed6b67  main -> main
+[00:49:23]   [OK] Push realizado com sucesso.
+[00:49:23] 
+[00:49:23] ============================================================
+[00:49:23]   RESUMO DO BACKUP
+[00:49:23] ============================================================
+[00:49:23]   [OK]     OneDrive
+[00:49:23]   [OK]     Externo
+[00:49:23]   [ERRO]   Banco
+[00:49:23]   [OK]     Snapshot
+[00:49:23]   [OK]     GitHub
+[00:49:23] 
+[00:49:23] Backup concluido com 1 erro(s). Verifique o log: C:\Projetos\portal-cidadania-os\logs\2026\07\backup\backup_20260719_004906.log

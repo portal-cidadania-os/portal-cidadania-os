@@ -111,7 +111,8 @@ if (Test-Path $Origem) {
 
     if (Test-Path (Join-Path $Origem ".git")) {
         $remoteAtual = git remote get-url origin 2>$null
-        Check "Remote GitHub correto" ($remoteAtual -eq $GitRemote)
+        $remoteOk = $remoteAtual -eq $GitRemote -or $remoteAtual -like "*github.com/$($Config.github.organization)/$ProjectName*"
+        Check "Remote GitHub correto" $remoteOk
         Write-Host "  Remote atual:  $remoteAtual"  -ForegroundColor DarkGray
         Write-Host "  Remote esperado: $GitRemote"  -ForegroundColor DarkGray
         Write-Host "  Branch atual:  $(git rev-parse --abbrev-ref HEAD 2>$null)" -ForegroundColor DarkGray

@@ -8,3 +8,10 @@ build/
 .env.development
 .DS_Store
 Thumbs.db
+
+# Logs de backup (nao versionar)
+logs/
+
+# Dumps de banco (dados pessoais - NUNCA versionar)
+*.dump
+*.sql.gz

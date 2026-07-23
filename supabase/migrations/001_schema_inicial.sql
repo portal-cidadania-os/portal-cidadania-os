@@ -1,0 +1,26 @@
+-- ============================================================
+-- Migration 001 — Schema Inicial
+-- Portal Cidadania OS (CERPI)
+-- Criado em: 2026-07-19
+-- Aplicado em staging:   pendente
+-- Aplicado em producao:  pendente
+--
+-- Conteudo: estrutura completa do banco
+--   - Funcao utilitaria: set_updated_at()
+--   - Tabelas centrais: pessoas, matriculas
+--   - Departamentos (10 nucleos): 32 tabelas totais
+--     farmacia (3), odontologia (3), saude (3),
+--     empregabilidade (3), cursos (4), crescer (4),
+--     promocao_social (3), apoio (2), esporte (4),
+--     campanhas (2)
+--   - Indices de performance (20+)
+--   - Row Level Security (RLS) em todas as tabelas
+--
+-- INSTRUCAO: Este arquivo e a fonte de verdade do schema.
+-- O arquivo supabase/schema_completo.sql tem o mesmo conteudo
+-- e serve como referencia de leitura rapida.
+-- ============================================================
+
+-- [Ver conteudo completo em: supabase/schema_completo.sql]
+-- Para aplicar: copie o conteudo de schema_completo.sql
+-- e cole no SQL Editor do Supabase (staging primeiro, producao depois).
