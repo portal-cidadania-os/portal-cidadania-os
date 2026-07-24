@@ -35,12 +35,18 @@ body {
   100%  { opacity: 0; }
 }
 
-/* Slide da esquerda para direita com fade in/out */
+/* Slide da esquerda para direita
+   Ciclo total: 60s — janela ativa de cada imagem: 0% a 10% (= 6s)
+   0%   → 2%  : entra pela esquerda + fade in   (1.2s)
+   2%   → 8%  : fica visível parado              (3.6s)
+   8%   → 10% : sai pela direita + fade out      (1.2s)
+   10%  → 100%: fora da tela, invisível          (54s de espera) */
 @keyframes bgSlideFromLeft {
   0%    { transform: translateX(-100%); opacity: 0; }
-  5%    { transform: translateX(0);     opacity: 1; }
-  85%   { transform: translateX(0);     opacity: 1; }
-  100%  { transform: translateX(0);     opacity: 0; }
+  2%    { transform: translateX(0);     opacity: 1; }
+  8%    { transform: translateX(0);     opacity: 1; }
+  10%   { transform: translateX(200%);  opacity: 0; }
+  100%  { transform: translateX(200%);  opacity: 0; }
 }
 
 /* Fundo 2 — alternativo (Footer)

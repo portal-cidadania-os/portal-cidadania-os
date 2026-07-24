@@ -13,20 +13,25 @@ import type { Session } from "@supabase/supabase-js";
 
 export default function Header() {
   const [session, setSession] = useState<Session | null>(null);
+  const [role, setRole] = useState<string | null>(null);
   const [menuAberto, setMenuAberto] = useState(false);
   const [navAberta, setNavAberta] = useState<"institucional" | "conteudo" | null>(null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
+      setRole(data.session?.user?.app_metadata?.role ?? null);
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, sess) => {
       setSession(sess);
+      setRole(sess?.user?.app_metadata?.role ?? null);
     });
 
     return () => listener.subscription.unsubscribe();
   }, []);
+
+  const portalHref = role === "admin" ? "/admin" : "/portal";
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -92,10 +97,10 @@ export default function Header() {
             {session ? (
               <>
                 <Link
-                  href="/portal"
+                  href={portalHref}
                   className="border border-brand-ciano text-brand-ciano hover:bg-brand-ciano hover:text-white font-semibold text-xs px-4 py-2 rounded-md transition-all"
                 >
-                  Meu Portal
+                  {role === "admin" ? "Painel Admin" : "Meu Portal"}
                 </Link>
                 <button
                   onClick={handleLogout}
@@ -254,11 +259,11 @@ export default function Header() {
               {session ? (
                 <>
                   <Link
-                    href="/portal"
+                    href={portalHref}
                     onClick={() => setMenuAberto(false)}
                     className="w-full text-center bg-brand-ciano text-white font-bold py-2.5 rounded-md text-sm"
                   >
-                    Meu Portal
+                    {role === "admin" ? "Painel Admin" : "Meu Portal"}
                   </Link>
                   <button
                     onClick={handleLogout}

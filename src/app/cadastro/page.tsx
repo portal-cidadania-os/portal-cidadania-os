@@ -177,22 +177,34 @@ function CadastroForm() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Header da página */}
-      <div className="bg-brand-ciano border-b-2 border-brand-amarelo">
-        <div className="max-w-2xl mx-auto px-6 py-8 text-center">
-          <p className="text-white/70 text-sm font-semibold mb-1">#MadureiraTem</p>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-white">
-            Cadastro — Centro Restaurando Cidadania
-          </h1>
-          {nucleoLabel && (
-            <p className="text-white/80 text-sm mt-2">
-              Interesse em: <strong>{nucleoLabel}</strong>
-            </p>
-          )}
-        </div>
-      </div>
 
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto px-4 py-10 flex flex-col gap-8">
+
+        {/* ── Cabeçalho: Voltar + Título ── */}
+        <div className="flex items-center gap-4">
+          <button
+            type="button"
+            onClick={() => {
+              if (nucleoParam) {
+                router.push(`/nucleos/${nucleoParam}`);
+              } else {
+                router.push("/");
+              }
+            }}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-black/40 hover:text-black transition-colors shrink-0"
+          >
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            Voltar
+          </button>
+
+          <div className="w-px h-5 bg-black/15" />
+
+          <h1 className="text-lg font-extrabold text-black tracking-tight">
+            Dados Cadastrais
+          </h1>
+        </div>
 
         {/* ── Dados Pessoais ── */}
         <section className="bg-white rounded-2xl p-6 shadow-sm border border-black/5">

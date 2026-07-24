@@ -55,7 +55,7 @@ export default function LandingPage() {
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-white">
         {/* Slideshow de fotos dos núcleos como fundo — provisório: BannerCarousel desabilitado */}
-        <BgSlideshow opacity={0.30} />
+        <BgSlideshow opacity={0.50} />
 
         {/* BannerCarousel desabilitado provisoriamente — descomentar para reativar:
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">

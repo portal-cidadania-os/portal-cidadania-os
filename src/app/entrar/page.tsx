@@ -66,8 +66,11 @@ function EntrarForm() {
         });
       } else {
         setMensagem({ tipo: "sucesso", texto: "Login realizado! Redirecionando..." });
+        // Redireciona admin para /admin, demais usuários para /portal
+        const { data: { session: sess } } = await supabase.auth.getSession();
+        const role = sess?.user?.app_metadata?.role;
         setTimeout(() => {
-          window.location.href = "/portal";
+          window.location.href = role === "admin" ? "/admin" : "/portal";
         }, 800);
       }
     } catch {
