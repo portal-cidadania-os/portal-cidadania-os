@@ -49,6 +49,17 @@ body {
   100%  { transform: translateX(200%);  opacity: 0; }
 }
 
+/* Foto pastores — entrada pelo canto superior direito */
+@keyframes pastoresEntrada {
+  0%   { transform: translate(80%, -80%); opacity: 0; }
+  60%  { opacity: 0.45; }
+  100% { transform: translate(0, 0);      opacity: 0.45; }
+}
+
+.pastores-anim {
+  animation: pastoresEntrada 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 /* Fundo 2 — alternativo (Footer)
    Para usar: coloque FUNDO2.png em /public/ e troque a classe no componente */
 .bg-movimento-suave-2 {

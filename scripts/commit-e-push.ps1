@@ -12,12 +12,14 @@ git status --short
 
 Write-Host "`n[2/4] Commit de alteracoes pendentes no develop (se houver)..." -ForegroundColor Cyan
 git add -A
-git commit -m "fix: auth session cookies, admin redirect e header role-aware
+git commit -m "feat: foto pastores animada nos banners dos nucleos + fixes auth
 
-- src/lib/supabase.ts: createClient -> createBrowserClient (SSR cookies)
-- src/middleware.ts: redireciona admin de /portal -> /admin
-- src/components/Header.tsx: botao Meu Portal aponta para /admin se role=admin
-- src/app/admin/layout.tsx: fix TS exato property (cast)" 2>&1 | Out-String | Write-Host
+- nucleos/[slug]: foto pastores com animacao de entrada pelo canto superior direito
+- globals.css: keyframe pastoresEntrada (slide + opacity 45%)
+- supabase.ts: createBrowserClient para sessao em cookies (SSR)
+- middleware.ts: redireciona admin /portal -> /admin
+- Header.tsx: botao Painel Admin para role=admin
+- admin/layout.tsx: fix TypeScript exato property" 2>&1 | Out-String | Write-Host
 
 Write-Host "`n[3/4] Push develop e merge para main..." -ForegroundColor Cyan
 git push origin develop

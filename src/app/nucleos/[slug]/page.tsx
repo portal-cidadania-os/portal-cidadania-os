@@ -30,10 +30,16 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
         {/* Overlay escuro */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
 
-        {/* Foto pastores — desabilitada provisoriamente */}
+        {/* Foto pastores — canto direito, âncora no rodapé do banner */}
+        <img
+          src="/pastores/dilmo-marisa.jpg"
+          alt="Pastores Dilmo e Marisa"
+          className="absolute top-0 right-0 z-20 hidden sm:block pastores-anim"
+          style={{ height: "36%", maxHeight: "196px", width: "auto", marginTop: "-1px", marginRight: "-1px" }}
+        />
 
-        {/* Conteúdo sobre o banner — alinhado à direita */}
-        <div className="relative z-10 w-full px-10 flex flex-col items-end justify-end pb-14 pt-32 md:pt-40" style={{ minHeight: "60vh" }}>
+        {/* Conteúdo sobre o banner — alinhado à direita, com espaço para a foto */}
+        <div className="relative z-10 w-full px-10 sm:pr-72 flex flex-col items-end justify-end pb-14 pt-32 md:pt-40" style={{ minHeight: "60vh" }}>
           {/* Subtítulo — extrema direita */}
           <p className="text-white/80 text-lg md:text-xl font-semibold mb-3 text-right">
             {nucleo.subtitulo}
