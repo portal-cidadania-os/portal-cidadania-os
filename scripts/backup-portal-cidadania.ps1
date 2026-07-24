@@ -1,5 +1,5 @@
 # ============================================================
-# Portal Cidadania OS (CERPI) — Backup Manager v1.0
+# Portal Cidadania OS (CERPI) — Backup Manager v1.1
 #
 # O que este script faz (em ordem):
 #   1. Valida o ambiente (config, ferramentas, espaco em disco)
@@ -7,13 +7,17 @@
 #   3. Sincroniza o codigo para HD Externo via robocopy
 #   4. Cria um snapshot ZIP com timestamp
 #   5. Exporta o banco Supabase via pg_dump       (pulavel com -PularBanco)
-#   6. Faz git commit + push para o GitHub
+#   6. Faz git commit + push para o GitHub (branch develop)
+#   7. [OPCIONAL] Merge develop -> main e push    (ativa com -Deploy)
+#      Isso dispara o deploy automatico no Vercel (PRODUCAO)
 #
 # Parametros:
 #   -Silencioso    Suprime saidas nao-essenciais
 #   -DryRun        Simula todas as operacoes sem gravar nada
 #   -PularBanco    Pula o pg_dump (util quando so quer salvar o codigo)
 #   -CommitMessage Mensagem do commit git (default: "backup: <timestamp>")
+#   -Deploy        Merge develop->main e push (publica no Vercel / PRODUCAO)
+#                  NAO use em commits de trabalho em andamento!
 #
 # Variavel de ambiente obrigatoria (NAO commitar no git):
 #   PORTAL_CIDADANIA_SUPABASE_DB_URL
@@ -21,14 +25,17 @@
 #
 # Exemplo de uso:
 #   .\scripts\backup-portal-cidadania.ps1
+#   .\scripts\backup-portal-cidadania.ps1 -Deploy
 #   .\scripts\backup-portal-cidadania.ps1 -DryRun
 #   .\scripts\backup-portal-cidadania.ps1 -PularBanco -CommitMessage "feat: add nucleo esporte page"
+#   .\scripts\backup-portal-cidadania.ps1 -Deploy -CommitMessage "feat: modulo vagas v1"
 # ============================================================
 
 param(
     [switch]$Silencioso,
     [switch]$DryRun,
     [switch]$PularBanco,
+    [switch]$Deploy,
     [string]$CommitMessage = ""
 )
 
@@ -173,7 +180,7 @@ function Backup-SupabaseDatabase {
 
 function Sync-GitHub {
     param([string]$Msg)
-    Write-Log "GIT COMMIT + PUSH" "Cyan"
+    Write-Log "GIT COMMIT + PUSH (develop)" "Cyan"
 
     if (!(Test-CommandExists "git")) {
         Write-Log "  [ERRO] Git nao encontrado." "Red"
@@ -206,6 +213,60 @@ function Sync-GitHub {
     }
 }
 
+function Deploy-Vercel {
+    Write-Log "DEPLOY VERCEL (develop -> main)" "Cyan"
+    Write-Log "  ATENCAO: Isso publica o codigo em PRODUCAO no Vercel." "Yellow"
+
+    if (!(Test-CommandExists "git")) {
+        Write-Log "  [ERRO] Git nao encontrado." "Red"
+        return $false
+    }
+
+    if ($DryRun) {
+        Write-Log "  [DRY-RUN] Merge develop->main simulado." "DarkYellow"
+        return $true
+    }
+
+    Set-Location $Origem
+
+    # Garante que esta no develop antes de comecar
+    $branchAtual = git branch --show-current
+    if ($branchAtual -ne "develop") {
+        Write-Log "  [AVISO] Branch atual e '$branchAtual', nao 'develop'. Abortando deploy." "Red"
+        return $false
+    }
+
+    # Muda para main, faz merge e push
+    git checkout main 2>&1 | ForEach-Object { Write-Log "  $_" "DarkGray" }
+    if ($LASTEXITCODE -ne 0) {
+        Write-Log "  [ERRO] Falha ao mudar para branch main." "Red"
+        git checkout develop | Out-Null
+        return $false
+    }
+
+    git merge develop --no-edit 2>&1 | ForEach-Object { Write-Log "  $_" "DarkGray" }
+    if ($LASTEXITCODE -ne 0) {
+        Write-Log "  [ERRO] Merge falhou. Resolva os conflitos manualmente." "Red"
+        git checkout develop | Out-Null
+        return $false
+    }
+
+    git push origin main 2>&1 | ForEach-Object { Write-Log "  $_" "DarkGray" }
+    $pushOk = $LASTEXITCODE -eq 0
+
+    # Volta para develop sempre
+    git checkout develop 2>&1 | Out-Null
+
+    if ($pushOk) {
+        Write-Log "  [OK] Deploy disparado no Vercel (main atualizado)." "Green"
+        Write-Log "  Acompanhe em: https://vercel.com/portal-cidadania-os-projects/portal-cidadania-os" "DarkGray"
+        return $true
+    } else {
+        Write-Log "  [ERRO] Push para main falhou." "Red"
+        return $false
+    }
+}
+
 function Validate-Environment {
     $ok = $true
 
@@ -231,7 +292,7 @@ function Validate-Environment {
 
 # ── Header ─────────────────────────────────────────────────────────────────────
 Write-Log "============================================================" "Cyan"
-Write-Log "  Portal Cidadania OS (CERPI) | Backup Manager v1.0" "White"
+Write-Log "  Portal Cidadania OS (CERPI) | Backup Manager v1.1" "White"
 if ($DryRun) { Write-Log "  [DRY-RUN] Nenhum arquivo sera gravado." "DarkYellow" }
 Write-Log "============================================================" "Cyan"
 Write-Log "Inicio: $(Get-Date -f 'dd/MM/yyyy HH:mm:ss')" "White"
@@ -271,6 +332,11 @@ if (!$PularBanco) {
 
 $Resultados["GitHub"] = Sync-GitHub -Msg $CommitMessage
 Write-Log ""
+
+if ($Deploy) {
+    $Resultados["Vercel"] = Deploy-Vercel
+    Write-Log ""
+}
 
 # ── Resumo ────────────────────────────────────────────────────────────────────
 Write-Log "============================================================" "Cyan"
