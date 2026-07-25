@@ -3,6 +3,7 @@ import { Sora } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ChatbotFAQ from "@/components/ChatbotFAQ";
 
 // ============================================================
 // Portal Cidadania OS — Layout Raiz
@@ -50,6 +51,9 @@ export default function RootLayout({
 
         {/* Rodapé */}
         <Footer />
+
+        {/* Widget FAQ Flutuante */}
+        <ChatbotFAQ />
       </body>
     </html>
   );
