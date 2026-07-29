@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import BannerCarousel from "@/components/BannerCarousel";
-import BgSlideshow from "@/components/BgSlideshow";
-import HeroBgFade from "@/components/HeroBgFade";
+import HeroSection from "@/components/HeroSection";
 import PatrocinadoresBar from "@/components/PatrocinadoresBar";
 import NucleoCard from "@/components/NucleoCard";
 import { NUCLEOS } from "@/lib/nucleos";
@@ -55,55 +53,7 @@ export default function LandingPage() {
     <main className="w-full bg-white text-black">
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-white">
-        {/* Fundo com crossfade entre duas imagens — troca a cada 5s */}
-        <HeroBgFade />
-
-        {/* Slideshow de fotos dos núcleos como fundo — provisório: BannerCarousel desabilitado */}
-        <BgSlideshow opacity={1} />
-
-        {/* BannerCarousel desabilitado provisoriamente — descomentar para reativar:
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
-          <div className="relative min-h-[340px] lg:min-h-0 p-4 md:p-6 lg:p-8 flex items-stretch order-1">
-            <div className="relative flex-1 min-h-[290px] rounded-2xl overflow-hidden shadow-xl">
-              <BannerCarousel />
-            </div>
-          </div>
-        */}
-
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[380px]">
-
-          {/* ── Coluna esquerda: vazia (imagens de fundo visíveis) ── */}
-          <div />
-
-          {/* ── Coluna direita: texto ── */}
-          <div className="flex flex-col gap-5 justify-start pl-6 pr-4 md:pl-8 md:pr-6 lg:pl-10 lg:pr-6 xl:pl-12 xl:pr-8 pt-6 md:pt-10 pb-10 md:pb-14 text-black">
-
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black">
-              Conectando pessoas a{" "}
-              <span className="text-brand-amarelo">oportunidades</span>{" "}
-              que transformam vidas
-            </h1>
-
-            <div className="text-black text-base md:text-lg leading-relaxed flex flex-col gap-3">
-              <p className="text-justify">
-                <strong className="text-black font-extrabold">CERPI</strong> – <strong className="text-black font-extrabold">Centro Restaurando Cidadania Piracicaba</strong> atua como um polo de transformação social, <strong className="text-black font-extrabold">"núcleo de apoio"</strong>, <strong className="text-black font-extrabold">"inclusão social para o autismo"</strong>, reunindo <strong className="text-black font-extrabold">cursos gratuitos</strong>, <strong className="text-black font-extrabold">vagas de emprego</strong>, serviços de <strong className="text-black font-extrabold">saúde comunitária</strong>, <strong className="text-black font-extrabold">odontologia</strong> e <strong className="text-black font-extrabold">farmácia solidária</strong>, tudo acessível para a população de Piracicaba.
-              </p>
-              <p className="text-justify">
-                O Centro desenvolve ações voltadas ao <strong className="text-black font-extrabold">desenvolvimento humano</strong> e ao fortalecimento social, promovendo <strong className="text-black font-extrabold">inclusão</strong>, <strong className="text-black font-extrabold">qualificação profissional</strong>, <strong className="text-black font-extrabold">educação</strong>, <strong className="text-black font-extrabold">cultura</strong> e <strong className="text-black font-extrabold">esporte</strong> e apoio às famílias. Cada iniciativa reforça o compromisso do <strong className="text-black font-extrabold">CERPI</strong> em ampliar oportunidades e construir caminhos para uma vida mais digna, saudável e participativa.
-              </p>
-            </div>
-
-            {/* Hashtag */}
-            <div className="flex items-center gap-2">
-              <span className="text-brand-amarelo font-extrabold text-lg tracking-tight">#MadureiraTem</span>
-              <span className="text-black/20 text-sm">·</span>
-              <span className="text-black text-sm font-semibold">Desenvolvimento de Pessoas</span>
-            </div>
-          </div>
-
-        </div>{/* fim grid provisório */}
-      </section>
+      <HeroSection />
 
       {/* ── NÚMEROS DE IMPACTO ── */}
       <section className="bg-brand-ciano border-t-2 border-b-2 border-brand-amarelo">
