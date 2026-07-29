@@ -7,6 +7,17 @@ import { NUCLEOS } from "@/lib/nucleos";
 // Rota: /nucleos/[slug]
 // ============================================================
 
+// Conselho Diretivo — mesmo bloco em todas as páginas de núcleo
+const CONSELHO = [
+  { cargo: "Presidente", nome: "A divulgar" },
+  { cargo: "Vice-Presidente", nome: "A divulgar" },
+  { cargo: "Tesoureiro", nome: "A divulgar" },
+  { cargo: "Secretário", nome: "A divulgar" },
+  { cargo: "Conselheiro Fiscal", nome: "A divulgar" },
+  { cargo: "Conselheiro Fiscal Suplente", nome: "A divulgar" },
+];
+
+
 // Gera as rotas estáticas em build time
 export function generateStaticParams() {
   return NUCLEOS.map((n) => ({ slug: n.slug }));
@@ -21,7 +32,7 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
     <main className="min-h-screen bg-white">
 
       {/* ── BANNER / HERO DO NÚCLEO ── */}
-      <section className="relative w-full overflow-hidden" style={{ minHeight: "60vh" }}>
+      <section className="relative w-full overflow-hidden" style={{ minHeight: "45vh" }}>
         {/* Imagem de fundo */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -39,7 +50,7 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
         />
 
         {/* Conteúdo sobre o banner — alinhado à direita, com espaço para a foto */}
-        <div className="relative z-10 w-full px-10 sm:pr-72 flex flex-col items-end justify-end pb-14 pt-32 md:pt-40" style={{ minHeight: "60vh" }}>
+        <div className="relative z-10 w-full px-10 sm:pr-72 flex flex-col items-end justify-end pb-14 pt-32 md:pt-40" style={{ minHeight: "45vh" }}>
           {/* Subtítulo — extrema direita */}
           <p className="text-white/80 text-lg md:text-xl font-semibold mb-3 text-right">
             {nucleo.subtitulo}
@@ -130,6 +141,32 @@ export default function NucleoPage({ params }: { params: { slug: string } }) {
               >
                 {outro.titulo}
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CONSELHO DIRETIVO ── */}
+      <section className="border-t border-neutral-100 bg-white">
+        <div className="max-w-5xl mx-auto px-6 py-12">
+          <h3 className="text-lg font-extrabold text-black mb-1">Conselho Diretivo</h3>
+          <p className="text-neutral-500 text-sm mb-6">
+            Eleito pelos associados em assembleia geral. Mandato 2024–2026.
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            {CONSELHO.map((item) => (
+              <div
+                key={item.cargo}
+                className="bg-white border border-neutral-200 rounded-2xl p-5 flex flex-col items-center text-center"
+              >
+                <div className="w-14 h-14 rounded-full bg-neutral-100 flex items-center justify-center mb-3">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" className="text-neutral-400" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                </div>
+                <h4 className="font-bold text-black text-sm leading-tight">{item.cargo}</h4>
+                <p className="text-neutral-400 text-xs mt-0.5">{item.nome}</p>
+              </div>
             ))}
           </div>
         </div>

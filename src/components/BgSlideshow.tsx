@@ -2,7 +2,7 @@
 
 // ============================================================
 // BgSlideshow — imagens deslizam da esquerda para direita
-// Cada imagem cobre a coluna esquerda (50% da largura),
+// Cada imagem cobre a coluna esquerda (35% da largura),
 // entra da esquerda e para ao lado do texto (coluna direita).
 // Borda direita tem fade suave para fundir com o fundo.
 // Uso: <BgSlideshow opacity={0.30} />
@@ -41,7 +41,7 @@ export default function BgSlideshow({ opacity = 0.12 }: BgSlideshowProps) {
           alt=""
           className="absolute top-0 left-0 h-full"
           style={{
-            width: "50%",
+            width: "35%",
             objectFit: "cover",
             objectPosition: "center",
             /* Fade suave na borda direita — funde com o fundo */

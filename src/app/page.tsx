@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import BannerCarousel from "@/components/BannerCarousel";
 import BgSlideshow from "@/components/BgSlideshow";
+import HeroBgFade from "@/components/HeroBgFade";
+import PatrocinadoresBar from "@/components/PatrocinadoresBar";
 import NucleoCard from "@/components/NucleoCard";
 import { NUCLEOS } from "@/lib/nucleos";
 
@@ -54,8 +56,11 @@ export default function LandingPage() {
 
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-white">
+        {/* Fundo com crossfade entre duas imagens — troca a cada 5s */}
+        <HeroBgFade />
+
         {/* Slideshow de fotos dos núcleos como fundo — provisório: BannerCarousel desabilitado */}
-        <BgSlideshow opacity={0.50} />
+        <BgSlideshow opacity={1} />
 
         {/* BannerCarousel desabilitado provisoriamente — descomentar para reativar:
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
@@ -72,12 +77,7 @@ export default function LandingPage() {
           <div />
 
           {/* ── Coluna direita: texto ── */}
-          <div className="flex flex-col gap-5 justify-center px-6 md:px-10 lg:px-12 xl:px-16 py-10 md:py-14 text-black">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-black/5 border border-black/20 text-black text-sm font-bold px-4 py-1.5 rounded-full self-start">
-              <span className="w-1.5 h-1.5 bg-black rounded-full animate-pulse" />
-              Centro Restaurando Cidadania · Piracicaba
-            </div>
+          <div className="flex flex-col gap-5 justify-start px-6 md:px-10 lg:px-12 xl:px-16 pt-6 md:pt-10 pb-10 md:pb-14 text-black">
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black">
               Conectando pessoas a{" "}
@@ -85,30 +85,20 @@ export default function LandingPage() {
               que transformam vidas
             </h1>
 
-            <p className="text-black text-base md:text-lg leading-relaxed max-w-lg">
-              Cursos gratuitos, vagas de emprego, saúde, odontologia e farmácia solidária — tudo em um único portal, acessível para toda a comunidade de Piracicaba.
-            </p>
+            <div className="text-black text-base md:text-lg leading-relaxed max-w-xl flex flex-col gap-3">
+              <p className="text-justify">
+                <strong className="text-black font-extrabold">CERPI</strong> – <strong className="text-black font-extrabold">Centro Restaurando Cidadania Piracicaba</strong> atua como um polo de transformação social, <strong className="text-black font-extrabold">"núcleo de apoio"</strong>, <strong className="text-black font-extrabold">"inclusão social para o autismo"</strong>, reunindo <strong className="text-black font-extrabold">cursos gratuitos</strong>, <strong className="text-black font-extrabold">vagas de emprego</strong>, serviços de <strong className="text-black font-extrabold">saúde comunitária</strong>, <strong className="text-black font-extrabold">odontologia</strong> e <strong className="text-black font-extrabold">farmácia solidária</strong>, tudo acessível para a população de Piracicaba.
+              </p>
+              <p className="text-justify">
+                O Centro desenvolve ações voltadas ao <strong className="text-black font-extrabold">desenvolvimento humano</strong> e ao fortalecimento social, promovendo <strong className="text-black font-extrabold">inclusão</strong>, <strong className="text-black font-extrabold">qualificação profissional</strong>, <strong className="text-black font-extrabold">educação</strong>, <strong className="text-black font-extrabold">cultura</strong> e <strong className="text-black font-extrabold">esporte</strong> e apoio às famílias. Cada iniciativa reforça o compromisso do <strong className="text-black font-extrabold">CERPI</strong> em ampliar oportunidades e construir caminhos para uma vida mais digna, saudável e participativa.
+              </p>
+            </div>
 
             {/* Hashtag */}
             <div className="flex items-center gap-2">
               <span className="text-brand-amarelo font-extrabold text-lg tracking-tight">#MadureiraTem</span>
               <span className="text-black/20 text-sm">·</span>
               <span className="text-black text-sm font-semibold">Desenvolvimento de Pessoas</span>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-              <Link
-                href="/entrar?tab=cadastro"
-                className="bg-brand-ciano hover:opacity-90 text-white font-bold px-7 py-3.5 rounded-xl text-sm transition-opacity"
-              >
-                Cadastre-se
-              </Link>
-              <Link
-                href="/cursos"
-                className="border border-black/20 hover:border-black/40 text-black font-semibold px-7 py-3.5 rounded-xl text-sm transition-colors"
-              >
-                Ver cursos →
-              </Link>
             </div>
           </div>
 
@@ -128,6 +118,12 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* ── PATROCINADORES ── */}
+      {/* Desabilitado provisoriamente — poucos logos ainda, ficou esteticamente fraco.
+          Reative quando tiver mais patrocinadores cadastrados:
+      <PatrocinadoresBar />
+      */}
 
       {/* ── NÚCLEOS / DEPARTAMENTOS ── */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-20">

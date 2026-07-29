@@ -58,8 +58,8 @@ export default function Header() {
               />
             </div>
             <div className="flex flex-col leading-tight">
-              <span className="text-[10px] text-neutral-400 font-semibold uppercase tracking-widest hidden sm:block">
-                Associação [Nome Oficial]
+              <span className="text-[13px] text-[#000000] font-semibold uppercase tracking-widest hidden sm:block">
+                Centro Restaurando Cidadania Piracicaba
               </span>
               <span className="text-black font-extrabold text-xl tracking-tight group-hover:text-brand-ciano transition-colors">
                 CERPI
