@@ -50,10 +50,37 @@ body {
   100%  { transform: translateX(200%);  opacity: 0; }
 }
 
-/* Hero — coluna esquerda entra da esquerda quando o grupo de slides começa */
+/* Hero — fade simples para mobile */
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Hero — slide da esquerda para desktop */
 @keyframes heroColumnIn {
   0%   { transform: translateX(-100%); opacity: 0; }
   100% { transform: translateX(0);     opacity: 1; }
+}
+
+/* Mobile: fade in / Desktop: slide da esquerda */
+.hero-col-enter {
+  animation: heroFadeIn 0.9s ease forwards;
+}
+@media (min-width: 1024px) {
+  .hero-col-enter {
+    animation: heroColumnIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+/* Máscara lateral — só no desktop (no mobile a imagem vai de borda a borda) */
+.hero-col-mask {
+  /* sem máscara no mobile */
+}
+@media (min-width: 1024px) {
+  .hero-col-mask {
+    -webkit-mask-image: linear-gradient(to right, black 65%, transparent 100%);
+    mask-image: linear-gradient(to right, black 65%, transparent 100%);
+  }
 }
 
 /* Foto pastores — entrada pelo canto superior direito */

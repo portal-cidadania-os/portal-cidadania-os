@@ -3,34 +3,27 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // ============================================================
-// HeroSection — CERPI
+// HeroSection — CERPI (responsivo: mobile / tablet / desktop)
 //
-// Sequência por grupo de 3 banners:
-//   [FundoFixo 5s]
-//   → [Coluna esquerda entra da esquerda, banners se revezam com crossfade
-//      por SLIDE_S segundos cada (sem gap branco), texto aparece à direita — 18s total]
-//   → [FundoFixo 5s]
-//   → [Preview: 1º banner do próximo grupo em tela cheia — 5s]
-//   → repete para o próximo grupo
+// Mobile  : imagem em topo (full-width, 260px), texto abaixo
+// Desktop : imagem na coluna esquerda (52%), texto na direita
 //
-// Correção de timing: container CSS entra 1 vez por grupo;
-// banners individuais alternam via React state (crossfade opacity),
-// sem gap branco entre eles.
+// Sequência:
+//   [FundoFixo 5s] → [Slides G0: B1-B3] → [FundoFixo 5s]
+//   → [Preview B4 5s] → [Slides G1: B4-B6] → ...
+//   → (loop após B28)
 // ============================================================
 
-const TOTAL_BANNERS  = 28;
-const PER_GROUP      = 3;
-const NUM_GROUPS     = Math.ceil(TOTAL_BANNERS / PER_GROUP); // 10
-const SLIDE_S        = 6;      // segundos que cada banner fica visível
-const FUNDO_MS       = 5_000;
-const PREVIEW_MS     = 5_000;
-const CROSSFADE_MS   = 800;    // duração do crossfade entre banners (ms)
+const TOTAL_BANNERS = 28;
+const PER_GROUP     = 3;
+const NUM_GROUPS    = Math.ceil(TOTAL_BANNERS / PER_GROUP); // 10
+const SLIDE_S       = 6;      // segundos por banner
+const FUNDO_MS      = 5_000;
+const PREVIEW_MS    = 5_000;
+const CROSSFADE_MS  = 800;
 
 const FUNDO_SRC  = "/fundo/FundoFixo.jpg";
-const ALL_BANNERS = Array.from(
-  { length: TOTAL_BANNERS },
-  (_, i) => `/slides/banner${i + 1}.jpg`
-);
+const ALL_BANNERS = Array.from({ length: TOTAL_BANNERS }, (_, i) => `/slides/banner${i + 1}.jpg`);
 
 type Phase = "fundo" | "preview" | "slides";
 
@@ -39,21 +32,19 @@ function groupBanners(g: number): string[] {
 }
 
 export default function HeroSection() {
-  const [groupIndex, setGroupIndex]     = useState(0);
-  const [phase, setPhase]               = useState<Phase>("fundo");
-  const [activeSlide, setActiveSlide]   = useState(0);   // banner ativo dentro do grupo
-  const [columnKey, setColumnKey]       = useState(0);   // força re-entrada da coluna
+  const [groupIndex,  setGroupIndex]  = useState(0);
+  const [phase,       setPhase]       = useState<Phase>("fundo");
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [columnKey,   setColumnKey]   = useState(0); // força re-entrada da coluna
   const firstCycle = useRef(true);
 
-  // ── Máquina de estados principal (fundo / preview / slides) ──────────
+  // ── Máquina de estados (fundo / preview / slides) ─────────────────────
   useEffect(() => {
     const banners = groupBanners(groupIndex);
-    const slidesDuration = banners.length * SLIDE_S * 1_000;
-
     const ms =
-      phase === "fundo"   ? FUNDO_MS       :
-      phase === "preview" ? PREVIEW_MS     :
-      slidesDuration;
+      phase === "fundo"   ? FUNDO_MS :
+      phase === "preview" ? PREVIEW_MS :
+      banners.length * SLIDE_S * 1_000;
 
     const timer = setTimeout(() => {
       if (phase === "fundo") {
@@ -70,7 +61,6 @@ export default function HeroSection() {
         setColumnKey((k) => k + 1);
         setPhase("slides");
       } else {
-        // slides → próximo grupo → fundo
         const next = (groupIndex + 1) % NUM_GROUPS;
         setGroupIndex(next);
         setPhase("fundo");
@@ -80,13 +70,12 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [phase, groupIndex]);
 
-  // ── Ciclo de banners DENTRO da fase slides (crossfade, sem gap) ───────
+  // ── Ciclo de banners dentro da fase slides (crossfade) ────────────────
   useEffect(() => {
     if (phase !== "slides") return;
-    setActiveSlide(0); // começa do banner 0 do grupo
-
+    setActiveSlide(0);
     const banners = groupBanners(groupIndex);
-    if (banners.length <= 1) return; // só 1 banner → não precisa ciclar
+    if (banners.length <= 1) return;
 
     const interval = setInterval(() => {
       setActiveSlide((s) => Math.min(s + 1, banners.length - 1));
@@ -94,32 +83,82 @@ export default function HeroSection() {
 
     return () => clearInterval(interval);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, columnKey]); // columnKey garante reset ao trocar de grupo
+  }, [phase, columnKey]);
 
-  const banners     = groupBanners(groupIndex);
-  const previewSrc  = banners[0]; // 1º banner do grupo atual para tela cheia
+  const banners    = groupBanners(groupIndex);
+  const previewSrc = banners[0];
 
+  // ─────────────────────────────────────────────────────────────────────
+  // RENDER
+  //
+  // Camadas:
+  //  z-0  base branca
+  //  z-10 imagem (mobile: no fluxo / desktop: absolute esquerda)
+  //  z-20 texto (mobile: abaixo da imagem / desktop: coluna direita)
+  //  z-30 overlay FundoFixo (cobre tudo quando phase=fundo)
+  //  z-31 overlay Preview   (cobre tudo quando phase=preview)
+  // ─────────────────────────────────────────────────────────────────────
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ minHeight: "500px", background: "#fff" }}
-    >
-      {/* ── z-0: base branca ── */}
-      <div className="absolute inset-0 bg-white" style={{ zIndex: 0 }} />
+    <section className="relative overflow-hidden bg-white">
 
-      {/* ── z-10: Coluna esquerda com banners em crossfade ── */}
+      {/* ── z-0: base branca (desktop) ── */}
+      <div className="absolute inset-0 bg-white hidden lg:block" style={{ zIndex: 0 }} />
+
+      {/* ══════════════════════════════════════════════════
+          MOBILE: coluna de imagem em fluxo normal
+          Sempre ocupa espaço (evita layout shift).
+          A imagem correta aparece conforme a fase.
+      ══════════════════════════════════════════════════ */}
+      <div
+        className="relative w-full overflow-hidden lg:hidden"
+        style={{ height: "clamp(220px, 45vw, 320px)", zIndex: 10 }}
+      >
+        {/* Banners (crossfade) — visíveis na fase slides */}
+        {banners.map((src, i) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            style={{
+              opacity: phase === "slides" && i === activeSlide ? 1 : 0,
+              transition: `opacity ${CROSSFADE_MS}ms ease-in-out`,
+            }}
+          />
+        ))}
+
+        {/* FundoFixo — visível na fase fundo */}
+        <img
+          src={FUNDO_SRC}
+          alt="Departamento Cidadania Madureira"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{
+            opacity: phase === "fundo" ? 1 : 0,
+            transition: "opacity 1200ms ease-in-out",
+          }}
+        />
+
+        {/* Preview banner — visível na fase preview */}
+        <img
+          src={previewSrc}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+          style={{
+            opacity: phase === "preview" ? 1 : 0,
+            transition: "opacity 1200ms ease-in-out",
+          }}
+        />
+      </div>
+
+      {/* ══════════════════════════════════════════════════
+          DESKTOP: coluna de imagem absoluta (esquerda 52%)
+          Só renderiza na fase slides — overlays cobrem o restante.
+      ══════════════════════════════════════════════════ */}
       {phase === "slides" && (
         <div
           key={columnKey}
-          className="absolute top-0 left-0 h-full pointer-events-none overflow-hidden"
-          style={{
-            width: "52%",
-            zIndex: 10,
-            WebkitMaskImage: "linear-gradient(to right, black 65%, transparent 100%)",
-            maskImage:        "linear-gradient(to right, black 65%, transparent 100%)",
-            /* Entra da esquerda uma única vez quando o grupo começa */
-            animation: `heroColumnIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards`,
-          }}
+          className="hero-col-enter hero-col-mask absolute top-0 left-0 h-full pointer-events-none overflow-hidden hidden lg:block"
+          style={{ width: "52%", zIndex: 10 }}
         >
           {banners.map((src, i) => (
             <img
@@ -136,24 +175,36 @@ export default function HeroSection() {
         </div>
       )}
 
-      {/* ── z-20: Grid texto (visível só na fase slides) ── */}
+      {/* ══════════════════════════════════════════════════
+          TEXTO — mobile: abaixo da imagem / desktop: coluna direita
+      ══════════════════════════════════════════════════ */}
       <div
-        className="relative grid grid-cols-1 lg:grid-cols-2 transition-opacity duration-[1200ms]"
-        style={{ minHeight: "500px", zIndex: 20, opacity: phase === "slides" ? 1 : 0 }}
+        className="relative grid grid-cols-1 lg:grid-cols-2 lg:min-h-[500px]"
+        style={{ zIndex: 20 }}
       >
-        {/* Coluna esquerda — transparente */}
-        <div />
+        {/* Espaçador — só desktop (ocupa lugar da coluna de imagem) */}
+        <div className="hidden lg:block" />
 
-        {/* Coluna direita — texto institucional */}
-        <div className="flex flex-col gap-5 justify-start pl-6 pr-4 md:pl-8 md:pr-6 lg:pl-10 lg:pr-6 xl:pl-12 xl:pr-8 pt-6 md:pt-10 pb-10 md:pb-14 text-black">
-
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black">
+        {/* Coluna de texto */}
+        <div className="
+          flex flex-col gap-4 lg:gap-5
+          px-5 py-7
+          sm:px-8 sm:py-8
+          lg:pl-10 lg:pr-6 lg:pt-10 lg:pb-14
+          xl:pl-12 xl:pr-8
+          bg-white lg:bg-transparent
+          text-black
+        ">
+          <h1 className="
+            text-3xl sm:text-4xl md:text-5xl
+            font-extrabold leading-tight tracking-tight text-black
+          ">
             Conectando pessoas a{" "}
             <span className="text-brand-amarelo">oportunidades</span>{" "}
             que transformam vidas
           </h1>
 
-          <div className="text-black text-base md:text-lg leading-relaxed flex flex-col gap-3">
+          <div className="text-black text-sm sm:text-base md:text-lg leading-relaxed flex flex-col gap-3">
             <p className="text-justify">
               <strong className="font-extrabold">CERPI</strong> –{" "}
               <strong className="font-extrabold">Centro Restaurando Cidadania Piracicaba</strong>{" "}
@@ -183,16 +234,24 @@ export default function HeroSection() {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-brand-amarelo font-extrabold text-lg tracking-tight">
+            <span className="text-brand-amarelo font-extrabold text-base sm:text-lg tracking-tight">
               #MadureiraTem
             </span>
             <span className="text-black/20 text-sm">·</span>
-            <span className="text-black text-sm font-semibold">Desenvolvimento de Pessoas</span>
+            <span className="text-black text-xs sm:text-sm font-semibold">
+              Desenvolvimento de Pessoas
+            </span>
           </div>
         </div>
       </div>
 
-      {/* ── z-30: FundoFixo.jpg (fase "fundo") ── */}
+      {/* ══════════════════════════════════════════════════
+          OVERLAYS GLOBAIS (cobrem tudo — mobile e desktop)
+          FundoFixo e Preview ficam na frente (z 30/31)
+          e cobrem tanto a imagem mobile quanto o texto.
+      ══════════════════════════════════════════════════ */}
+
+      {/* FundoFixo — fase "fundo" */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-[1200ms]"
         style={{ zIndex: 30, opacity: phase === "fundo" ? 1 : 0 }}
@@ -204,7 +263,7 @@ export default function HeroSection() {
         />
       </div>
 
-      {/* ── z-31: Preview do 1º banner do próximo grupo (fase "preview") ── */}
+      {/* Preview do 1º banner do próximo grupo — fase "preview" */}
       <div
         className="absolute inset-0 pointer-events-none transition-opacity duration-[1200ms]"
         style={{ zIndex: 31, opacity: phase === "preview" ? 1 : 0 }}
