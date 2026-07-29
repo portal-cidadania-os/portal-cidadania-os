@@ -50,6 +50,12 @@ body {
   100%  { transform: translateX(200%);  opacity: 0; }
 }
 
+/* Hero — coluna esquerda entra da esquerda quando o grupo de slides começa */
+@keyframes heroColumnIn {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0);     opacity: 1; }
+}
+
 /* Foto pastores — entrada pelo canto superior direito */
 @keyframes pastoresEntrada {
   0%   { transform: translate(80%, -80%); opacity: 0; }
