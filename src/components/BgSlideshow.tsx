@@ -1,28 +1,23 @@
 "use client";
 
 // ============================================================
-// BgSlideshow — imagens deslizam da esquerda para direita
+// BgSlideshow — 28 fotos gerais do CERPI passando em sequência,
+// sem título/tag/link por imagem (fotos soltas, só ambientação).
 // Cada imagem cobre a coluna esquerda (35% da largura),
 // entra da esquerda e para ao lado do texto (coluna direita).
 // Borda direita tem fade suave para fundir com o fundo.
-// Uso: <BgSlideshow opacity={0.30} />
+// Imagens em: public/slides/banner1.jpg ... banner28.jpg
+// Uso: <BgSlideshow opacity={1} />
 // ============================================================
 
-const IMAGES = [
-  "/slides/sorria-com-cristo.jpg",
-  "/slides/nucleo-apoio.jpg",
-  "/slides/nucleo-crescer.jpg",
-  "/slides/empregabilidade.jpg",
-  "/slides/esporte.jpg",
-  "/slides/promocao-social.jpg",
-  "/slides/pascoa.jpg",
-  "/slides/natal.jpg",
-  "/slides/empreendedoras.jpg",
-  "/slides/acao-kids.jpg",
-];
+const TOTAL_IMAGENS = 28;
+const IMAGES = Array.from(
+  { length: TOTAL_IMAGENS },
+  (_, i) => `/slides/banner${i + 1}.jpg`
+);
 
 const DURATION_PER_IMAGE = 6;                          // segundos por imagem
-const TOTAL_DURATION = IMAGES.length * DURATION_PER_IMAGE; // 60s ciclo total
+const TOTAL_DURATION = IMAGES.length * DURATION_PER_IMAGE; // ciclo total (28 x 6s = 168s)
 
 interface BgSlideshowProps {
   opacity?: number;
