@@ -36,18 +36,18 @@ export default function BgSlideshow({ opacity = 0.12 }: BgSlideshowProps) {
           alt=""
           className="absolute top-0 left-0 h-full"
           style={{
-            width: "35%",
+            width: "52%",
             objectFit: "cover",
             objectPosition: "center",
             /* Fade suave na borda direita — funde com o fundo */
             WebkitMaskImage:
-              "linear-gradient(to right, black 55%, transparent 100%)",
+              "linear-gradient(to right, black 65%, transparent 100%)",
             maskImage:
-              "linear-gradient(to right, black 55%, transparent 100%)",
+              "linear-gradient(to right, black 65%, transparent 100%)",
             /* Animação: slide da esquerda + fade in/out */
             animation: `bgSlideFromLeft ${TOTAL_DURATION}s infinite`,
             animationDelay: `${i * DURATION_PER_IMAGE}s`,
-            animationFillMode: "both", // mantém estado do 1º keyframe durante o delay
+            animationFillMode: "both",
           }}
         />
       ))}

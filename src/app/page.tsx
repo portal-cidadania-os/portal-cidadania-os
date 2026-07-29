@@ -77,7 +77,7 @@ export default function LandingPage() {
           <div />
 
           {/* ── Coluna direita: texto ── */}
-          <div className="flex flex-col gap-5 justify-start px-6 md:px-10 lg:px-12 xl:px-16 pt-6 md:pt-10 pb-10 md:pb-14 text-black">
+          <div className="flex flex-col gap-5 justify-start pl-6 pr-4 md:pl-8 md:pr-6 lg:pl-10 lg:pr-6 xl:pl-12 xl:pr-8 pt-6 md:pt-10 pb-10 md:pb-14 text-black">
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight text-black">
               Conectando pessoas a{" "}
@@ -85,7 +85,7 @@ export default function LandingPage() {
               que transformam vidas
             </h1>
 
-            <div className="text-black text-base md:text-lg leading-relaxed max-w-xl flex flex-col gap-3">
+            <div className="text-black text-base md:text-lg leading-relaxed flex flex-col gap-3">
               <p className="text-justify">
                 <strong className="text-black font-extrabold">CERPI</strong> – <strong className="text-black font-extrabold">Centro Restaurando Cidadania Piracicaba</strong> atua como um polo de transformação social, <strong className="text-black font-extrabold">"núcleo de apoio"</strong>, <strong className="text-black font-extrabold">"inclusão social para o autismo"</strong>, reunindo <strong className="text-black font-extrabold">cursos gratuitos</strong>, <strong className="text-black font-extrabold">vagas de emprego</strong>, serviços de <strong className="text-black font-extrabold">saúde comunitária</strong>, <strong className="text-black font-extrabold">odontologia</strong> e <strong className="text-black font-extrabold">farmácia solidária</strong>, tudo acessível para a população de Piracicaba.
               </p>

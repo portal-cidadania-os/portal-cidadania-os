@@ -42,7 +42,8 @@ body {
    8%   → 10% : sai pela direita + fade out      (1.2s)
    10%  → 100%: fora da tela, invisível          (54s de espera) */
 @keyframes bgSlideFromLeft {
-  0%    { transform: translateX(-100%); opacity: 0; }
+  0%    { transform: translateX(-104%); opacity: 0; }
+  1%    { transform: translateX(-2%);   opacity: 0; }
   2%    { transform: translateX(0);     opacity: 1; }
   8%    { transform: translateX(0);     opacity: 1; }
   10%   { transform: translateX(200%);  opacity: 0; }
