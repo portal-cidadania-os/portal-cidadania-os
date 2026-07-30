@@ -45,11 +45,11 @@ export default function Footer() {
           {/* Coluna 1 — Brand */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-brand-ciano flex items-center justify-center flex-shrink-0">
+              <div className="w-9 h-9 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
                 <img
-                  src="/institucional/logo.png"
+                  src="/logo/logo%20cidadania2.png"
                   alt="Logo"
-                  className="h-6 w-auto object-contain"
+                  className="h-9 w-9 object-contain rounded-lg"
                 />
               </div>
               <span className="font-extrabold text-2xl text-black">Portal Cidadania</span>

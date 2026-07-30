@@ -138,8 +138,8 @@ function EntrarForm() {
             Voltar para o início
           </Link>
           <div className="flex items-center justify-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-brand-ciano flex items-center justify-center">
-              <img src="/institucional/logo.png" alt="Logo" className="h-5 w-auto object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
+            <div className="w-8 h-8 rounded-lg bg-black flex items-center justify-center">
+              <img src="/logo/logo%20cidadania2.png" alt="Logo" className="h-8 w-8 object-contain rounded-lg" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
             </div>
             <span className="font-extrabold text-xl text-black">Portal Cidadania</span>
           </div>

@@ -47,11 +47,11 @@ export default function Header() {
 
           {/* Logo + Nome */}
           <Link href="/" className="flex items-center gap-3 select-none group flex-shrink-0">
-            <div className="w-10 h-10 rounded-lg bg-brand-ciano flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
               <img
-                src="/institucional/logo.png"
+                src="/logo/logo%20cidadania2.png"
                 alt="Logo Portal Cidadania"
-                className="h-7 w-auto object-contain"
+                className="h-9 w-9 object-contain rounded-lg"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
                 }}

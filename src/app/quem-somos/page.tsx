@@ -23,9 +23,9 @@ export default function QuemSomosPage() {
             {/* Logo + Título */}
             <div className="flex items-center gap-4 mb-8">
               <img
-                src="/institucional/logo.png"
+                src="/logo/logo%20cidadania2.png"
                 alt="Logo CERPI"
-                className="w-16 h-16 object-contain"
+                className="w-16 h-16 object-contain rounded-lg"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = "none";
                 }}
@@ -117,7 +117,7 @@ export default function QuemSomosPage() {
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     const img = e.target as HTMLImageElement;
-                    img.src = "/institucional/logo.png";
+                    img.src = "/logo/logo%20cidadania2.png";
                     img.onerror = null;
                   }}
                 />
