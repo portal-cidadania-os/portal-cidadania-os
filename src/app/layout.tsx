@@ -45,8 +45,8 @@ export default function RootLayout({
         {/* Header fixo 4 camadas */}
         <Header />
 
-        {/* Conteúdo da rota */}
-        <div className="flex-1 w-full">
+        {/* Conteúdo da rota — pr-12 reserva espaço para FloatingSocial (ícones fixos direita) */}
+        <div className="flex-1 w-full pr-12 xl:pr-0">
           {children}
         </div>
 

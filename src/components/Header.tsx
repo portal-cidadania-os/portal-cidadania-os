@@ -47,16 +47,14 @@ export default function Header() {
 
           {/* Logo + Nome */}
           <Link href="/" className="flex items-center gap-3 select-none group flex-shrink-0">
-            <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
-              <img
-                src="/logo/logo%20cidadania2.png"
-                alt="Logo Portal Cidadania"
-                className="h-9 w-9 object-contain rounded-lg"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = "none";
-                }}
-              />
-            </div>
+            <img
+              src="/logo/logo%20cidadania2.png"
+              alt="Logo Portal Cidadania"
+              className="h-10 w-10 object-contain rounded-lg flex-shrink-0"
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = "none";
+              }}
+            />
             <div className="flex flex-col leading-tight">
               <span className="text-[13px] text-[#000000] font-semibold uppercase tracking-widest hidden sm:block">
                 Centro Restaurando Cidadania Piracicaba
