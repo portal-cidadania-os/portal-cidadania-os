@@ -110,8 +110,8 @@ export default function HeroSection() {
 
         {/* Coluna de texto */}
         <div className="
-          px-5 py-7
-          sm:px-8 sm:py-8
+          pl-5 pr-14 py-7
+          sm:pl-8 sm:pr-16 sm:py-8
           lg:pl-10 lg:pr-6 lg:pt-6 lg:pb-14
           xl:pl-12 xl:pr-8
           bg-white lg:bg-transparent
