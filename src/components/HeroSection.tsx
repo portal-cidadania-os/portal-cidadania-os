@@ -110,7 +110,6 @@ export default function HeroSection() {
 
         {/* Coluna de texto */}
         <div className="
-          flex flex-col gap-4 lg:gap-5
           px-5 py-7
           sm:px-8 sm:py-8
           lg:pl-10 lg:pr-6 lg:pt-6 lg:pb-14
@@ -118,61 +117,70 @@ export default function HeroSection() {
           bg-white lg:bg-transparent
           text-black
         ">
-          {/* Logo — canto superior direito da coluna */}
-          <div className="flex justify-end">
-            <img
-              src="/logo/logo%20cidadania2.png"
-              alt="Logo Cidadania Madureira"
-              className="h-20 w-auto object-contain"
-            />
-          </div>
+          {/* Linha interna: texto à esquerda, logo à direita */}
+          <div className="flex flex-row items-center gap-4">
 
-          <h1 className="
-            text-3xl sm:text-4xl md:text-5xl
-            font-extrabold leading-tight tracking-tight text-black
-          ">
-            Conectando pessoas a{" "}
-            <span className="text-brand-amarelo">oportunidades</span>{" "}
-            que transformam vidas
-          </h1>
+            {/* Bloco de texto */}
+            <div className="flex flex-col gap-4 lg:gap-5 flex-1 min-w-0">
+              <h1 className="
+                text-3xl sm:text-4xl md:text-5xl
+                font-extrabold leading-tight tracking-tight text-black
+              ">
+                Conectando pessoas a{" "}
+                <span className="text-brand-amarelo">oportunidades</span>{" "}
+                que transformam vidas
+              </h1>
 
-          <div className="text-black text-sm sm:text-base md:text-lg leading-relaxed flex flex-col gap-3">
-            <p className="text-justify">
-              <strong className="font-extrabold">CERPI</strong> –{" "}
-              <strong className="font-extrabold">Centro Restaurando Cidadania Piracicaba</strong>{" "}
-              atua como um polo de transformação social,{" "}
-              <strong className="font-extrabold">"núcleo de apoio"</strong>,{" "}
-              <strong className="font-extrabold">"inclusão social para o autismo"</strong>,
-              reunindo <strong className="font-extrabold">cursos gratuitos</strong>,{" "}
-              <strong className="font-extrabold">vagas de emprego</strong>, serviços de{" "}
-              <strong className="font-extrabold">saúde comunitária</strong>,{" "}
-              <strong className="font-extrabold">odontologia</strong> e{" "}
-              <strong className="font-extrabold">farmácia solidária</strong>, tudo acessível
-              para a população de Piracicaba.
-            </p>
-            <p className="text-justify">
-              O Centro desenvolve ações voltadas ao{" "}
-              <strong className="font-extrabold">desenvolvimento humano</strong> e ao
-              fortalecimento social, promovendo{" "}
-              <strong className="font-extrabold">inclusão</strong>,{" "}
-              <strong className="font-extrabold">qualificação profissional</strong>,{" "}
-              <strong className="font-extrabold">educação</strong>,{" "}
-              <strong className="font-extrabold">cultura</strong> e{" "}
-              <strong className="font-extrabold">esporte</strong> e apoio às famílias.
-              Cada iniciativa reforça o compromisso do{" "}
-              <strong className="font-extrabold">CERPI</strong> em ampliar oportunidades e
-              construir caminhos para uma vida mais digna, saudável e participativa.
-            </p>
-          </div>
+              <div className="text-black text-sm sm:text-base md:text-lg leading-relaxed flex flex-col gap-3">
+                <p className="text-justify">
+                  <strong className="font-extrabold">CERPI</strong> –{" "}
+                  <strong className="font-extrabold">Centro Restaurando Cidadania Piracicaba</strong>{" "}
+                  atua como um polo de transformação social,{" "}
+                  <strong className="font-extrabold">"núcleo de apoio"</strong>,{" "}
+                  <strong className="font-extrabold">"inclusão social para o autismo"</strong>,
+                  reunindo <strong className="font-extrabold">cursos gratuitos</strong>,{" "}
+                  <strong className="font-extrabold">vagas de emprego</strong>, serviços de{" "}
+                  <strong className="font-extrabold">saúde comunitária</strong>,{" "}
+                  <strong className="font-extrabold">odontologia</strong> e{" "}
+                  <strong className="font-extrabold">farmácia solidária</strong>, tudo acessível
+                  para a população de Piracicaba.
+                </p>
+                <p className="text-justify">
+                  O Centro desenvolve ações voltadas ao{" "}
+                  <strong className="font-extrabold">desenvolvimento humano</strong> e ao
+                  fortalecimento social, promovendo{" "}
+                  <strong className="font-extrabold">inclusão</strong>,{" "}
+                  <strong className="font-extrabold">qualificação profissional</strong>,{" "}
+                  <strong className="font-extrabold">educação</strong>,{" "}
+                  <strong className="font-extrabold">cultura</strong> e{" "}
+                  <strong className="font-extrabold">esporte</strong> e apoio às famílias.
+                  Cada iniciativa reforça o compromisso do{" "}
+                  <strong className="font-extrabold">CERPI</strong> em ampliar oportunidades e
+                  construir caminhos para uma vida mais digna, saudável e participativa.
+                </p>
+              </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-brand-amarelo font-extrabold text-base sm:text-lg tracking-tight">
-              #MadureiraTem
-            </span>
-            <span className="text-black/20 text-sm">·</span>
-            <span className="text-black text-xs sm:text-sm font-semibold">
-              Desenvolvimento de Pessoas
-            </span>
+              <div className="flex items-center gap-2">
+                <span className="text-brand-amarelo font-extrabold text-base sm:text-lg tracking-tight">
+                  #MadureiraTem
+                </span>
+                <span className="text-black/20 text-sm">·</span>
+                <span className="text-black text-xs sm:text-sm font-semibold">
+                  Desenvolvimento de Pessoas
+                </span>
+              </div>
+            </div>
+
+            {/* Logo — à direita do texto, centralizado verticalmente */}
+            <div className="flex-shrink-0 flex items-center">
+              <img
+                src="/logo/logo%20cidadania2.png"
+                alt="Logo Cidadania Madureira"
+                style={{ height: "88px", width: "auto" }}
+                className="object-contain"
+              />
+            </div>
+
           </div>
         </div>
       </div>
