@@ -139,7 +139,6 @@ function EntrarForm() {
           </Link>
           <div className="flex items-center justify-center gap-2">
             <img src="/logo/logo%20cidadania2.png" alt="Logo" className="h-8 w-8 object-contain rounded-lg" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-            </div>
             <span className="font-extrabold text-xl text-black">Portal Cidadania</span>
           </div>
         </div>
