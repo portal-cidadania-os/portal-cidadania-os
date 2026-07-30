@@ -68,7 +68,7 @@ const ICONS: Record<string, () => React.ReactElement> = {
 export default function FloatingSocial() {
   return (
     <div
-      className="fixed right-3 bottom-28 z-40 flex flex-col gap-2 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2"
+      className="fixed right-3 bottom-28 z-40 flex flex-col gap-2 lg:right-auto lg:left-3 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2"
       aria-label="Redes sociais"
     >
       {REDES.map((rede) => {
