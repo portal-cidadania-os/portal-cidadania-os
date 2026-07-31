@@ -69,22 +69,11 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── PATROCINADORES ── */}
-      {/* Desabilitado provisoriamente — poucos logos ainda, ficou esteticamente fraco.
-          Reative quando tiver mais patrocinadores cadastrados:
+      {/* ── PATROCINADORES — barra preta com logo + carrossel ── */}
       <PatrocinadoresBar />
-      */}
 
       {/* ── NÚCLEOS / DEPARTAMENTOS ── */}
-      <section className="max-w-7xl mx-auto px-6 py-16 md:py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-3">
-            Nossos Núcleos
-          </h2>
-          <p className="text-neutral-500 text-base max-w-2xl mx-auto">
-            Serviços e programas para a comunidade, totalmente gratuitos e acessíveis.
-          </p>
-        </div>
+      <section className="max-w-7xl mx-auto px-6 pt-6 pb-16 md:pt-8 md:pb-20">
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {NUCLEOS.map((nucleo) => (
