@@ -41,7 +41,12 @@ export async function GET(req: NextRequest) {
   const { data, error } = await query;
 
   if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    // Log detalhado no servidor; nunca expor error.message ao cliente
+    console.error("[api/faq] Supabase error:", error);
+    return NextResponse.json(
+      { error: "Erro interno ao buscar perguntas frequentes." },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ items: data ?? [] });
